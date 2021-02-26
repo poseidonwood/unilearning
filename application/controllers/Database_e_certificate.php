@@ -204,7 +204,7 @@ class Database_e_certificate extends CI_Controller
 
     public function importExcel()
     {
-        $fileName = $_FILES['excelimport']['name'];
+        $fileName = date('YmdHis') . "-" . $_FILES['excelimport']['name'];
 
         $config['upload_path'] = './assets/excel'; //path upload
         $config['file_name'] = $fileName;  // nama file
@@ -257,6 +257,11 @@ class Database_e_certificate extends CI_Controller
             );
 
             $insert = $this->db->insert("e_certificate_revisi", $data);
+            if ($insert == false) {
+                $this->db->truncate('e_certificate_revisi');
+                $this->session->set_flashdata('notif', $this->MNotif->alertfail('Cek data anda , GAGAL DI UPLOAD'));
+                redirect('database_e_certificate', 'refresh');
+            }
         }
         $this->session->set_flashdata('notif', $this->MNotif->alertsuccess('Data berhasil di simpan'));
         redirect('database_e_certificate', 'refresh');
