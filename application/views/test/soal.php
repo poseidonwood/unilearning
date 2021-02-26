@@ -1,26 +1,9 @@
 <div class="wrapper">
     <div class="content">
-        <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 5">
-            <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-animation="true" data-delay="5000" data-autohide="false">
-                <div class="toast-header">
-                    <span class="fas fa-clock" style="width: 15px;height: 15px"></span>
-
-                    <strong class="mr-auto">Timer</strong>
-                    <!-- <small>1 menit yang lalu</small> -->
-                    <!-- <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button> -->
-                </div>
-                <div class="toast-body" id="timernya">
-                </div>
-            </div>
-        </div>
         <div class="container-fluid">
             <div class="page-title-box">
             </div>
-            <!-- <span class="badge badge-pill badge-success">
-                <h4 id="timernya"></h4>
-            </span> -->
+
             <div class="row" id="row3" <?php
                                         if ($cekmateripotition !== "pretest") {
                                             echo "style='display:none'";

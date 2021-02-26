@@ -31,9 +31,9 @@
                                         <div class="mt-4">
                                             <a onclick="filter_table()" class="btn btn-info" href="javascript:void(0)">Filter</a>
                                         </div>                                                        
-                                    </div>                                       
+                                    </div>                                                                          
                                 </div>                                                    
-                            </div> 
+                            </div>
 
                             <div class="col-sm-4 text-right mt-4">
                                 <div class="form-group button-items btn btn-success" data-toggle="modal" data-target=".bs-example-modal-lg-create">
@@ -78,26 +78,44 @@
                             <table id="datatable-buttons" class="table table-bordered nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                 <thead>
                                     <tr>
-                                        <th>No.</th>
-                                        <th>Code ID</th>
-                                        <th>NIP</th>
-                                        <th>Nama Karyawan</th>
-                                        <th>Line Manager</th>
-                                        <th>Factory</th>
-                                        <th>Certificate No.</th>
-                                        <th>SIO No.</th>
-                                        <th>SIO Type</th>
-                                        <th>Yang Mengeluarkan</th>
-                                        <th>Tanggal Terbit</th>
-                                        <th>Tanggal Expired</th>
-                                        <th>Reminder</th>
-                                        <th>PIC Reminder</th>
-                                        <th>PIC Line Manager Reminder</th>
-                                        <th>Status</th>
-                                        <th>Notes</th>
-                                        <th>Files</th>
-                                        <th>Edit</th>
-                                        <th>Delete</th>
+                                        <th class="align-middle">No.</th>
+                                        <th class="align-middle">Code ID</th>
+                                        <th class="align-middle">NIP</th>
+                                        <th class="align-middle">Nama Karyawan</th>
+                                        <th class="align-middle">
+                                            Line Manager
+                                            <br>
+                                            <select class="form-control js-example-basic-single" name="" id="" style="width: 100%;">
+                                                <option value="0">-- Filter Line Manager --</option>                                                
+                                            </select>
+                                        </th>
+                                        <th class="align-middle">
+                                            Factory
+                                            <br>
+                                            <select class="form-control js-example-basic-single" name="" id="" style="width: 100%;">
+                                                <option value="0">-- Filter Factory --</option>                                                
+                                            </select>
+                                        </th>
+                                        <th class="align-middle">Certificate No.</th>
+                                        <th class="align-middle">SIO No.</th>
+                                        <th class="align-middle">
+                                            SIO Type
+                                            <br>
+                                            <select class="form-control js-example-basic-single" name="" id="" style="width: 100%;">
+                                                <option value="0">-- Filter SIO Type --</option>                                                
+                                            </select>
+                                        </th>
+                                        <th class="align-middle">Yang Mengeluarkan</th>
+                                        <th class="align-middle">Tanggal Terbit</th>
+                                        <th class="align-middle">Tanggal Expired</th>
+                                        <th class="align-middle">Reminder</th>
+                                        <th class="align-middle">PIC Reminder</th>
+                                        <th class="align-middle">PIC Line Manager Reminder</th>
+                                        <th class="align-middle">Status</th>
+                                        <th class="align-middle">Notes</th>
+                                        <th class="align-middle">Files</th>
+                                        <th class="align-middle">Edit</th>
+                                        <th class="align-middle">Delete</th>
                                     </tr>
                                 </thead>
                                 <tbody>

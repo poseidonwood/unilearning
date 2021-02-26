@@ -76,7 +76,7 @@
                                                         $this->db->select_sum('durasi');
                                                         $this->db->where(array('materi_cat_id' => $category->id));
                                                         $getmenit = $this->db->get('materi')->row()->durasi;
-                                                        $getjam = round($getmenit / 60, 2);
+                                                        $getjam = $getmenit / 60;
                                                         echo $getjam . " Jam";
                                                         ?></span>
                                                     <span class="text-muted"><span class="fas fa-user-friends mr-1"></span>
@@ -234,7 +234,7 @@
                             <div class="form-group col-md-12">
                                 <label class="control-label">Nama Materi</label>
                                 <input class="form-control" required type="text" value="" name="judul" id="" required>
-                                <input class="form-control" required type="hidden" value="" name="materi_cat_idnya" id="inimatericatid" required>
+                                <input class="form-control" required type="hidden" value="" id="inimatericatid" required>
 
                             </div>
                         </div>
@@ -558,13 +558,13 @@
                                     <div class="col-md-3">
                                         <div class="form-group col-md-12">
                                             <label class="control-label">Option 3</label>
-                                            <textarea name="pilihan2c" class="form-control" id="" cols="30" rows="3" required></textarea>
+                                            <textarea name="pilihan3c" class="form-control" id="" cols="30" rows="3" required></textarea>
                                         </div>
                                     </div>
                                     <div class="col-md-3">
                                         <div class="form-group col-md-12">
                                             <label class="control-label">Option 4</label>
-                                            <textarea name="pilihan2d" class="form-control" id="" cols="30" rows="3" required></textarea>
+                                            <textarea name="pilihan3d" class="form-control" id="" cols="30" rows="3" required></textarea>
                                         </div>
                                     </div>
                                 </div>
