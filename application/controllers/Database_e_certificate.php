@@ -14,6 +14,7 @@ class Database_e_certificate extends CI_Controller
         if ($maintenance !== FALSE) {
             redirect("maintenance", 'refresh');
         }
+        $this->load->library('Excel');
         $this->load->model('ModThirdapp');
     }
     public function index()
@@ -199,5 +200,65 @@ class Database_e_certificate extends CI_Controller
         } else {
             echo json_encode(array('message' => 'Access Denied'));
         }
+    }
+
+    public function importExcel()
+    {
+        $fileName = $_FILES['excelimport']['name'];
+
+        $config['upload_path'] = './assets/excel'; //path upload
+        $config['file_name'] = $fileName;  // nama file
+        $config['allowed_types'] = 'xls|xlsx|csv'; //tipe file yang diperbolehkan
+        $config['max_size'] = 10000; // maksimal sizze
+
+        $this->load->library('upload'); //meload librari upload
+        $this->upload->initialize($config);
+
+        if (!$this->upload->do_upload('excelimport')) {
+            echo $this->upload->display_errors();
+            exit();
+        }
+
+        $inputFileName = './assets/excel/' . $fileName;
+
+        try {
+            $inputFileType = PHPExcel_IOFactory::identify($inputFileName);
+            $objReader = PHPExcel_IOFactory::createReader($inputFileType);
+            $objPHPExcel = $objReader->load($inputFileName);
+        } catch (Exception $e) {
+            die('Error loading file "' . pathinfo($inputFileName, PATHINFO_BASENAME) . '": ' . $e->getMessage());
+        }
+
+        $sheet = $objPHPExcel->getSheet(0);
+        $highestRow = $sheet->getHighestRow();
+        $highestColumn = $sheet->getHighestColumn();
+
+        for ($row = 2; $row <= $highestRow; $row++) {                  //  Read a row of data into an array                 
+            $rowData = $sheet->rangeToArray(
+                'A' . $row . ':' . $highestColumn . $row,
+                NULL,
+                TRUE,
+                FALSE
+            );
+
+            // Sesuaikan key array dengan nama kolom di database                                                         
+            $data = array(
+                "kode" => $rowData[0][0],
+                "employee_id" => $rowData[0][1],
+                "no_certificate" => $rowData[0][2],
+                "no_sio" => $rowData[0][3],
+                "jenis_lisensi" => $rowData[0][4],
+                "pic" => $rowData[0][5],
+                "provider" => $rowData[0][6],
+                "tanggal_terbit" => $rowData[0][7],
+                "tanggal_expired" => $rowData[0][8],
+                "note" => $rowData[0][9],
+                "files" => $rowData[0][10]
+            );
+
+            $insert = $this->db->insert("e_certificate_revisi", $data);
+        }
+        $this->session->set_flashdata('notif', $this->MNotif->alertsuccess('Data berhasil di simpan'));
+        redirect('database_e_certificate', 'refresh');
     }
 }

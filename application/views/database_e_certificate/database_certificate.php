@@ -10,15 +10,15 @@
                 <div class="card m-b-30">
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-md-12">                                
+                            <div class="col-md-12">
                                 <div class="form-group row">
                                     <h4 class="mt-0 header-title">list data E-Certificate</h4>
-                                </div>                            
+                                </div>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-sm-8"> 
-                                <div class="form-group row">                                                    
+                            <div class="col-sm-8">
+                                <div class="form-group row">
                                     <div class="col-sm-3">
                                         <label for="">Tanggal Awal</label>
                                         <input class="form-control" type="date" value="2011-08-19" id="example-date-input">
@@ -30,9 +30,9 @@
                                     <div class="col-sm-2">
                                         <div class="mt-4">
                                             <a onclick="filter_table()" class="btn btn-info" href="javascript:void(0)">Filter</a>
-                                        </div>                                                        
-                                    </div>                                                                          
-                                </div>                                                    
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
 
                             <div class="col-sm-4 text-right mt-4">
@@ -86,14 +86,14 @@
                                             Line Manager
                                             <br>
                                             <select class="form-control js-example-basic-single" name="" id="" style="width: 100%;">
-                                                <option value="0">-- Filter Line Manager --</option>                                                
+                                                <option value="0">-- Filter Line Manager --</option>
                                             </select>
                                         </th>
                                         <th class="align-middle">
                                             Factory
                                             <br>
                                             <select class="form-control js-example-basic-single" name="" id="" style="width: 100%;">
-                                                <option value="0">-- Filter Factory --</option>                                                
+                                                <option value="0">-- Filter Factory --</option>
                                             </select>
                                         </th>
                                         <th class="align-middle">Certificate No.</th>
@@ -102,7 +102,7 @@
                                             SIO Type
                                             <br>
                                             <select class="form-control js-example-basic-single" name="" id="" style="width: 100%;">
-                                                <option value="0">-- Filter SIO Type --</option>                                                
+                                                <option value="0">-- Filter SIO Type --</option>
                                             </select>
                                         </th>
                                         <th class="align-middle">Yang Mengeluarkan</th>
@@ -338,7 +338,7 @@
                                                 <div class="col-sm-12">
                                                     <label for="">Certificate Factory</label>
                                                     <select class="form-control js-example-basic-single" name="" id="" style="width: 100%;">
-                                                        <option value="0">-- Choice Certificate Factory --</option>                                                
+                                                        <option value="0">-- Choice Certificate Factory --</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -498,7 +498,7 @@
                                         <div class="col-sm-12">
                                             <label for="">Certificate Factory</label>
                                             <select class="form-control js-example-basic-single" name="" id="" style="width: 100%;">
-                                                <option value="0">-- Choice Certificate Factory --</option>                                                
+                                                <option value="0">-- Choice Certificate Factory --</option>
                                             </select>
                                         </div>
                                     </div>
@@ -733,17 +733,18 @@
                 <div class="row mt-3">
                     <div class="col-12">
                         <div class="m-b-30">
-                            <form action="#" class="">
+                            <form method="post" action="<?= base_url('database_e_certificate/importExcel') ?>" enctype="multipart/form-data">
                                 <small class="form-text text-left font-14 text-muted">Upload dengan format: xlsx,csv <br> Dengan makimal ukuran/size: 2 MB</small>
-                                <input type="file" id="upload2" name="filenya" onChange="upload_file2(1)" id="userfile1" accept=".csv,.xlsx">
-                            </form>
+                                <input type="file" id="upload2" name="excelimport" id="userfile1" accept=".csv,.xlsx,.xls">
+
                         </div>
                     </div> <!-- end col -->
-                </div> <!-- end row --> 
-            </div>        
-                <div class="text-center m-t-5 mb-5">
-                    <button type="button" class="btn btn-primary waves-effect waves-light">Import Files</button>
-                </div>            
+                </div> <!-- end row -->
+            </div>
+            <div class="text-center m-t-5 mb-5">
+                <button type="submit" class="btn btn-primary waves-effect waves-light">Import Files</button>
+            </div>
+            </form>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
