@@ -253,7 +253,7 @@ class Database_e_certificate extends CI_Controller
                 "tanggal_terbit" => $rowData[0][7],
                 "tanggal_expired" => $rowData[0][8],
                 "note" => $rowData[0][9],
-                "files" => $rowData[0][10]
+                // "files" => $rowData[0][10]
             );
 
             $insert = $this->db->insert("e_certificate_revisi", $data);
