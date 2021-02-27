@@ -48,6 +48,14 @@
                                             <td class="mt-0 header-title">role</td> 
                                             <td>Admin</td>                                                             
                                         </tr>
+                                        <tr>
+                                            <td class="mt-0 header-title">Email</td> 
+                                            <td>email.unilever@gmail.com</td>                                                             
+                                        </tr>
+                                        <tr>
+                                            <td class="mt-0 header-title">No. Whatsapp</td> 
+                                            <td>0812481927491824</td>                                                             
+                                        </tr>
                                     </tbody>
                                 </table> 
                             </div>
@@ -66,7 +74,7 @@
 </div>
                                                         
 <!--  Modal content for edit  -->
-<div class="modal fade bs-example-modal-lg-edit-profil" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+<div class="modal fade bs-example-modal-lg-edit-profil" id="modalUbahdata" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-md">
         <div class="modal-content">
             <div class="modal-header">
@@ -82,7 +90,7 @@
                             <div class="card-body">                                                                                                                                                               
                                 <div class="text-right row form-group">                                                                    
                                     <div class="col-sm-12">                                        
-                                        <button type="button" id="" class="btn btn-success" data-toggle="modal" data-target=".bs-example-modal-lg-ubah_password"> Change Password</button>                                                                                                                        
+                                        <button type="button" id="ubahpass" class="btn btn-success" data-toggle="modal" data-target=".bs-example-modal-lg-ubah_password"> Change Password</button>                                                                                                                        
                                     </div>
                                 </div>                            
 
@@ -107,7 +115,7 @@
                                             <div class="col-md-12 col-12 col-lg-12 mt-2">  
                                                 <label>Foto Profil</label>
                                                 <small class="form-text text-muted">Upload dengan format: png, jpg, jpeg, atau pdf <br> Dengan makimal ukuran/size: 2 MB</small>
-                                                <input type="file" name="userfile1" onChange="upload_file2(1)" id="userfile1" accept="image/*,.pdf,.docx,.xlsx,.xls,.csv">
+                                                <input type="file" name="userfile1" onChange="upload_file2(1)" id="userfile1" accept="image/*">
                                                 <input type="hidden" name="fileupload[]" id="fileupload1">
                                             </div>
                                             <span class="addinput"></span>
@@ -128,12 +136,12 @@
 </div><!-- /.modal -->                      
 
 <!--  Modal content for edit  -->
-<div class="modal fade bs-example-modal-lg-ubah_password" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+<div class="modal fade bs-example-modal-lg-ubah_password" id="modalUbahPass" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title mt-0" id="myLargeModalLabel">Change Password</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="close" data-dismiss="modal" data-toggle="modal" data-target=".bs-example-modal-lg-edit-profil" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -161,9 +169,16 @@
                 </div> <!-- end row -->                                              
             </div>
             <div class="modal-footer">                                                            
-                <button type="button" id="" class="btn btn-secondary" data-dismiss="modal" aria-label="Close"> Cancel</button>                                                                                                                        
+                <button type="button" id="" class="btn btn-secondary" data-dismiss="modal" aria-label="Close" data-toggle="modal" data-target=".bs-example-modal-lg-edit-profil"> Cancel</button>                                                                                                                        
                 <button type="button" id="" class="btn btn-primary">Simpan</button>                                                            
             </div>    
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->                      
+</div><!-- /.modal -->
+
+<script>
+$("#ubahpass").click(function(){
+  $("#modalUbahpass").modal("show");
+  $("#modalUbahdata").modal("hide");
+})
+</script>                      

@@ -67,7 +67,7 @@
                                                 Download
                                             </span>
                                         </button>
-                                        <div class="dropdown-menu">
+                                        <div class="dropdown-menu dropdown-menu-right">
                                             <a class="dropdown-item" target="_BLANK" href="#">PDF</a>
                                             <a class="dropdown-item" href="#">Excel</a>
                                         </div>
@@ -80,7 +80,7 @@
                                     <thead>
                                         <tr>
                                             <th title="No">No</th>
-                                            <th title="Nama">Nama Department</th>                                            
+                                            <th title="Nama">Department Name</th>                                            
                                             <th class="text-center" title="Edit">Edit</th>
                                             <th class="text-center" title="Delete">Delete</th>
                                         </tr>
@@ -90,7 +90,7 @@
                                             <td>
                                                 1
                                             </td>
-                                            <td>Approved</td>
+                                            <td>Engineering Site</td>
                                             <td class="text-center">      
                                                 <span style="width:5%">
                                                     <span id="edit" class="btn btn-primary m-btn m-btn--icon btn-lg m-btn--icon-only">

@@ -578,3 +578,8 @@ $("#import").click(function(){
   $("#modalImport").modal("show");
 
 })
+
+$("#ubahpass").click(function(){
+  $("#modalUbahpass").modal("show");
+  $("#modalUbahdata").modal("hide");
+})

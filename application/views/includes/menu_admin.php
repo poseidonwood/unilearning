@@ -170,6 +170,7 @@
                                             <li><a href="master_skill">Matrix Skill</a></li> 
                                             <li><a href="master_department">Department</a></li>                                            
                                             <li><a href="master_factory">Factory</a></li> 
+                                            <li><a href="master_sio_type">SIO Type</a></li> 
                                         </ul>
                                     </li>                                    
                                 </ul>

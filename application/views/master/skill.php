@@ -67,7 +67,7 @@
                                                 Download
                                             </span>
                                         </button>
-                                        <div class="dropdown-menu">
+                                        <div class="dropdown-menu dropdown-menu-right">
                                             <a class="dropdown-item" target="_BLANK" href="#">PDF</a>
                                             <a class="dropdown-item" href="#">Excel</a>
                                         </div>
@@ -87,6 +87,7 @@
                                             <th></th>
                                             <th>Plan</th>
                                             <th>Actual</th>
+                                            <th class="text-center">Preview</th>
                                             <th class="text-center" title="Edit">Edit</th>
                                             <th class="text-center" title="Delete">Delete</th>
                                         </tr>
@@ -106,9 +107,16 @@
                                             <td></td>
                                             <td></td>
                                             <td>
-                                                Pontiac@gmail.com
+                                                20
                                             </td>
-                                            <td>Approved</td>
+                                            <td>50</td>
+                                            <td class="text-center">
+                                                <span style="width:113px">                                                            
+                                                    <a href="#" name="<?php ;?>" class="hapus btn btn-info m-btn m-btn--icon btn-lg m-btn--icon-only deletekar" kode="<?php ?>" data-toggle="modal" data-target=".bs-example-modal-preview_matrixSkill">
+                                                        <i class="far fa-eye"></i>
+                                                    </a>
+                                                </span>                                                                                                  
+                                            </td>
                                             <td class="text-center">      
                                                 <span style="width:5%">
                                                     <span id="edit" class="btn btn-primary m-btn m-btn--icon btn-lg m-btn--icon-only">
@@ -213,6 +221,219 @@
                 <div class="text-center m-t-5 mb-5">
                     <button type="button" class="btn btn-primary waves-effect waves-light">Import Files</button>
                 </div>            
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<!--  Modal content for Preview Matrix Skill-->
+<div class="modal fade bs-example-modal-preview_matrixSkill" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title mt-0" id="myLargeModalLabel">Preview NIP - Nama</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">                               
+            <div class="row">
+                <div class="col-xl-5">
+                    <div class="card m-b-30">
+                        <div class="card-body">
+                            <h4 class="mt-0 header-title mb-4">Matrix Skill Tabel</h4>
+                            <div class="table-responsive">
+                                <table class="text-center table-bordered dt-responsive nowrap" style="width: 100%;">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center">PD</th>
+                                            <th rowspan="2">Index</th>
+                                            <th rowspan="2">Deskripsi</th>
+                                            <th colspan="2" class="text-center">Example</th>                                                                                                    
+                                        </tr>
+                                        <tr>
+                                            <th><i class="fas fa-user-secret"></i></th>
+                                            <th class="text-center">Target</th>
+                                            <th class="text-center">Aktual</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td rowspan="10" id="putar">Reactive</td>
+                                            <td>1</td>
+                                            <td>2</td>
+                                            <td>3</td>                                                    
+                                        </tr>           
+                                        <tr>
+                                            <td>2</td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>3</td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>4</td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>5</td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>6</td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>7</td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>8</td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>9</td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>10</td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>                                                
+                                        <tr>
+                                            <td rowspan="10" id="putar">Preventive</td>                                                
+                                            <td>11</td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>12</td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>13</td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>14</td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>15</td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>16</td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>17</td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>18</td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>19</td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>  
+                                        <tr>
+                                            <td>20</td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>          
+                                        <tr>
+                                            <td rowspan="10" id="putar">....</td>
+                                            <td>21</td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>  
+                                        <tr>
+                                            <td>22</td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>23</td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>24</td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>25</td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>26</td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>27</td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>28</td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>29</td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>30</td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>                      
+                                    </tbody>
+                                </table>
+                            </div>                                    
+                        </div>
+                    </div>
+                </div>         
+
+                <div class="col-xl-7">
+                    <div class="card m-b-30">
+                        <div class="card-body">                                
+                            <h4 class="mt-0 header-title mb-4">Matrix Skill Chart</h4>
+                          
+                            <div id="matrix_skill" class="chart--container"></div>                            
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- END ROW -->  
+            </div>
+            <div class="modal-footer">                                                            
+                <button type="button" id="" class="btn btn-secondary" data-dismiss="modal" aria-label="Close"> Cancel</button>                                                                                                                        
+                <button type="button" id="" class="btn btn-primary">Simpan</button>                                                            
+            </div>    
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->

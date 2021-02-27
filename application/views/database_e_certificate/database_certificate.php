@@ -17,25 +17,44 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-sm-8">
+                            <div class="col-sm-6">
                                 <div class="form-group row">
-                                    <div class="col-sm-3">
+                                    <div class="form-group col-sm-4">                                    
+                                        <label for="">Filter Factory</label>
+                                        <select class="form-control js-example-basic-single" name="" id="" style="width: 100%;">
+                                            <option value="0">Filter Factory</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-sm-4">
+                                        <label for="">Filter Line Manager</label>
+                                        <select class="form-control js-example-basic-single" name="" id="" style="width: 100%;">
+                                            <option value="0">Filter Line Manager</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-sm-4">                                    
+                                        <label for="">Filter SIO Type</label>
+                                        <select class="form-control js-example-basic-single" name="" id="" style="width: 100%;">
+                                            <option value="0">Filter SIO Type</option>
+                                        </select>
+                                    </div>
+                                    <br>
+                                    <div class="form-group col-sm-4">
                                         <label for="">Tanggal Awal</label>
                                         <input class="form-control" type="date" value="2011-08-19" id="example-date-input">
                                     </div>
-                                    <div class="col-sm-3">
+                                    <div class="form-group col-sm-4">
                                         <label for="">Tanggal Akhir</label>
                                         <input class="form-control" type="date" value="2011-08-19" id="example-date-input">
                                     </div>
                                     <div class="col-sm-2">
-                                        <div class="mt-4">
-                                            <a onclick="filter_table()" class="btn btn-info" href="javascript:void(0)">Filter</a>
+                                        <div class="mt-4 pt-1">
+                                            <a onclick="" class="btn btn-info" href="javascript:void(0)">Filter</a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="col-sm-4 text-right mt-4">
+                            <div class="col-sm-6 text-right mt-4">
                                 <div class="form-group button-items btn btn-success" data-toggle="modal" data-target=".bs-example-modal-lg-create">
                                     <span>
                                         <i class="fas fa-plus-circle"></i>
@@ -56,16 +75,18 @@
                                     </a>
                                 </div>
 
-                                <a href="#" target="_BLANK">
-                                    <div class="form-group button-items btn btn-warning">
+                                <div class="btn-group mb-3">
+                                    <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fas fa-download"></i>
                                         <span>
-                                            <i class="fas fa-download"></i>
-                                            <span>
-                                                Download
-                                            </span>
+                                            Download
                                         </span>
+                                    </button>
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        <a class="dropdown-item" target="_BLANK" href="#">PDF</a>
+                                        <a class="dropdown-item" href="#">Excel</a>
                                     </div>
-                                </a>
+                                </div>  
                             </div>
                         </div>
                         <?php if (isset($error)) {
@@ -83,27 +104,15 @@
                                         <th class="align-middle">NIP</th>
                                         <th class="align-middle">Nama Karyawan</th>
                                         <th class="align-middle">
-                                            Line Manager
-                                            <br>
-                                            <select class="form-control js-example-basic-single" name="" id="" style="width: 100%;">
-                                                <option value="0">-- Filter Line Manager --</option>
-                                            </select>
+                                            Line Manager                                            
                                         </th>
                                         <th class="align-middle">
-                                            Factory
-                                            <br>
-                                            <select class="form-control js-example-basic-single" name="" id="" style="width: 100%;">
-                                                <option value="0">-- Filter Factory --</option>
-                                            </select>
+                                            Factory                                            
                                         </th>
                                         <th class="align-middle">Certificate No.</th>
                                         <th class="align-middle">SIO No.</th>
                                         <th class="align-middle">
-                                            SIO Type
-                                            <br>
-                                            <select class="form-control js-example-basic-single" name="" id="" style="width: 100%;">
-                                                <option value="0">-- Filter SIO Type --</option>
-                                            </select>
+                                            SIO Type                                            
                                         </th>
                                         <th class="align-middle">Yang Mengeluarkan</th>
                                         <th class="align-middle">Tanggal Terbit</th>

@@ -45,7 +45,10 @@
 
     <link href="<?php echo base_url("assets/Admin/timeline.css"); ?>" rel="stylesheet" type="text/css">
     
-    <script src="https://cdn.zingchart.com/zingchart.min.js"></script>
+    <script src="<?php echo base_url("assets/js/matrix_skill.js"); ?>"></script>
+    
+    <!-- <script src="https://cdn.zingchart.com/zingchart.min.js"></script> -->
+    
     <!-- Select2 -->
     <link href="https://adminlte.io/themes/AdminLTE/bower_components/select2/dist/css/select2.min.css" rel="stylesheet" />
     <style>
