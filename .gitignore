@@ -1,0 +1,12 @@
+#OS junk files
+[Tt]humbs.db
+*.DS_Store
+
+#Media File
+*.jpg
+*.jpeg
+*.mp4
+*.pdf
+*.csv
+*.xls
+*.xlsx
