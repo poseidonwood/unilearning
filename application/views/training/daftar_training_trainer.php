@@ -115,7 +115,7 @@
                                     </div>
                                     <div class="modal-body">
                                         <div class="row">
-                                            <div class="col-12">
+                                            <div class="col-md-12 table-responsive">
                                                 <table id="datatable<?= $nonyaini++; ?>" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                                     <thead>
                                                         <tr>
