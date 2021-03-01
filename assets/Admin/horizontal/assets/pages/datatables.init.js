@@ -22,12 +22,9 @@ for (i = 1; i < 20; i++) {
         lengthChange: true        
     });
 
-    var table = $('#datatable2').DataTable({
-        lengthChange: false,
-        buttons: ['copy', 'excel', 'pdf', 'colvis']       
-    });
-
-
     table.buttons().container()
         .appendTo('#datatable-buttons_wrapper .col-md-6:eq(0)');
 });
+
+table = $('datatable2').DataTable( {
+} );

@@ -583,3 +583,16 @@ $("#ubahpass").click(function(){
   $("#modalUbahpass").modal("show");
   $("#modalUbahdata").modal("hide");
 })
+
+
+$("#read_list_materi_saya").click(function(){
+  $("#modalread_list_materi_saya").modal("show");
+})
+
+$("#tampil_video_training_saya").click(function(){
+  $("#modaltampil_video_training_saya").modal("show");
+})
+
+$("#tampil_file_training_saya").click(function(){
+  $("#modaltampil_file_training_saya").modal("show");
+})

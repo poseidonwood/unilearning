@@ -64,8 +64,7 @@
                                 <a href="<?php  ?>" name="edit" class="btn btn-primary m-btn m-btn--icon btn-lg m-btn--icon-only" data-toggle="modal" data-target=".bs-example-modal-lg-edit-profil">
                                     <i class="fas fa-pencil-alt"></i> Ubah Profile
                                 </a>
-                            </span>                        
-                        
+                            </span>                                                
                     </div>
                 </div>
             </div>
