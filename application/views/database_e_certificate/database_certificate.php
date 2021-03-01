@@ -19,7 +19,7 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="form-group row">
-                                    <div class="form-group col-sm-4">                                    
+                                    <div class="form-group col-sm-4">
                                         <label for="">Filter Factory</label>
                                         <select class="form-control js-example-basic-single" name="" id="" style="width: 100%;">
                                             <option value="0">Filter Factory</option>
@@ -31,7 +31,7 @@
                                             <option value="0">Filter Line Manager</option>
                                         </select>
                                     </div>
-                                    <div class="form-group col-sm-4">                                    
+                                    <div class="form-group col-sm-4">
                                         <label for="">Filter SIO Type</label>
                                         <select class="form-control js-example-basic-single" name="" id="" style="width: 100%;">
                                             <option value="0">Filter SIO Type</option>
@@ -86,7 +86,7 @@
                                         <a class="dropdown-item" target="_BLANK" href="#">PDF</a>
                                         <a class="dropdown-item" href="#">Excel</a>
                                     </div>
-                                </div>  
+                                </div>
                             </div>
                         </div>
                         <?php if (isset($error)) {
@@ -104,15 +104,15 @@
                                         <th class="align-middle">NIP</th>
                                         <th class="align-middle">Nama Karyawan</th>
                                         <th class="align-middle">
-                                            Line Manager                                            
+                                            Line Manager
                                         </th>
                                         <th class="align-middle">
-                                            Factory                                            
+                                            Factory
                                         </th>
                                         <th class="align-middle">Certificate No.</th>
                                         <th class="align-middle">SIO No.</th>
                                         <th class="align-middle">
-                                            SIO Type                                            
+                                            SIO Type
                                         </th>
                                         <th class="align-middle">Yang Mengeluarkan</th>
                                         <th class="align-middle">Tanggal Terbit</th>
