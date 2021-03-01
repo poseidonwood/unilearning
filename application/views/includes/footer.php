@@ -1,5 +1,5 @@
             			<footer class="footer">
-            				© 2021 - <?php echo date('Y');?> SKMI GROUP <span class="d-none d-sm-inline-block"> - Created by <a target="_BLANK" href="https://www.skmi.web.id">www.skmi.web.id</a></span>
+            				© 2021 - <?php echo date('Y'); ?> SKMI GROUP <span class="d-none d-sm-inline-block"> - Created by <a target="_BLANK" href="https://www.skmi.web.id">www.skmi.web.id</a></span>
             			</footer>
 
             			</div>
@@ -111,10 +111,10 @@
             			<script src="<?php echo base_url("assets/Admin/plugins/datatables/dataTables.responsive.min.js"); ?>"></script>
             			<script src="<?php echo base_url("assets/Admin/plugins/datatables/responsive.bootstrap4.min.js"); ?>"></script>
 
-						<!-- Dropzone js -->
-						<script src="<?php echo base_url("assets/Admin/plugins/dropzone/dist/dropzone.js");?>"></script>
-            			
-						<!-- Datatable init js -->
+            			<!-- Dropzone js -->
+            			<script src="<?php echo base_url("assets/Admin/plugins/dropzone/dist/dropzone.js"); ?>"></script>
+
+            			<!-- Datatable init js -->
             			<script src="<?php echo base_url("assets/Admin/horizontal/assets/pages/datatables.init.js"); ?>"></script>
 
             			<!--C3 Chart -->
@@ -143,7 +143,6 @@
             			<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
             			<script src="<?php echo base_url("assets/Admin/timeline.css"); ?>"></script>
-
             			<!-- App js -->
             			<script src="<?php echo base_url("assets/Admin/horizontal/assets/js/app.js"); ?>"></script>
             			<!-- Custom JS -->
@@ -153,7 +152,7 @@
 									if (isset($notif)) {
 										echo $notif;
 									}
-									if($this->session->flashdata('notif')!== null){
+									if ($this->session->flashdata('notif') !== null) {
 										echo $this->session->flashdata('notif');
 									}
 									?>

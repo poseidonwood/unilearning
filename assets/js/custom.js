@@ -1,5 +1,5 @@
 var base_url = window.location.origin + '/' + window.location.pathname.split ('/') [1]; 
-// In your Javascript (external .js resource or <script> tag)
+
 // Geo Location
 var x = document.getElementById("demo");
 function getLocation() {
