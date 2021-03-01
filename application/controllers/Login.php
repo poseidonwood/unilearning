@@ -107,4 +107,68 @@ class Login extends CI_Controller
         $this->session->sess_destroy();
         redirect('login');
     }
+    public function cekqr()
+    {
+        $qrcode = $this->input->post('qrcode');
+        if (empty($qrcode) || !isset($qrcode)) {
+            echo json_encode(array('message' => 'Cant access this site'));
+        } else {
+            if ($this->agent->is_browser()) {
+                $agent = $this->agent->browser() . ' ' . $this->agent->version();
+            } elseif ($this->agent->is_mobile()) {
+                $agent = $this->agent->mobile();
+            } else {
+                $agent = 'Data user gagal di dapatkan';
+            }
+
+            $latitude = $this->input->post('latitude');
+            $longitude = $this->input->post('longitude');
+            $link = "https://www.latlong.net/c/?lat=$latitude&long=$longitude";
+            $check_login = $this->MData->selectdataglobal('users');
+            foreach ($check_login as $cekqr) {
+                $nipnya = $cekqr->nip;
+                $password = $cekqr->password;
+                $qrcode2 = $nipnya . $password;
+                if ($qrcode == $qrcode2) {
+                    //masuk ke dashboard berdasarkan devisi/role created season
+                    $cekdata = $this->MData->InnerJoinWhere('users', 'karyawan', 'nip', array("users.nip" => $nipnya));
+                    $session_data = array(
+                        'user_id' => $cekqr->id,
+                        'role' => $cekqr->role,
+                        'status' => $cekqr->status,
+                        'nama' => $cekdata->nama,
+                        'email' => $cekdata->email,
+                        'nip' => $cekdata->nip,
+                        'department' => $cekdata->department,
+                        'photo' => $cekdata->photo,
+                        'logged_in' => TRUE
+                    );
+                    $this->session->set_userdata($session_data);
+                    $datalog = array(
+                        'id_log' => null,
+                        'id_user' => $cekdata->nip,
+                        'email' => $cekdata->email,
+                        'nama' => $cekdata->nama,
+                        'start_login' => date('Y-m-d H:i:s'),
+                        'end_login' => "0000-00-00 00:00",
+                        'selisih_waktu' => "0",
+                        'device' => $agent,
+                        'ip' => $this->input->ip_address(),
+                        'map' => $link,
+                        'status' => "LOGIN",
+                    );
+                    $this->MData->tambah('users_loglogin', $datalog);
+                    if ($session_data['role'] == 'KARYAWAN' && $session_data['status'] == 'aktif') {
+                        echo json_encode(array('url' => 'dashboard_karyawan'));
+                    } elseif ($session_data['role'] == 'LINE MANAGER' && $session_data['status'] == 'aktif') {
+                        echo json_encode(array('url' => 'dashboard_lm'));
+                    } elseif ($session_data['role'] == 'TRAINER' && $session_data['status'] == 'aktif') {
+                        echo json_encode(array('url' => 'dashboard_trainer'));
+                    } else {
+                        echo json_encode(array('url' => 'dashboard'));
+                    }
+                }
+            }
+        }
+    }
 }

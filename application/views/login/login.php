@@ -155,6 +155,9 @@
     <script src="<?php echo base_url("assets/Admin/horizontal/assets/js/metismenu.min.js"); ?>"></script>
     <script src="<?php echo base_url("assets/Admin/horizontal/assets/js/jquery.slimscroll.js"); ?>"></script>
     <script src="<?php echo base_url("assets/Admin/horizontal/assets/js/waves.min.js"); ?>"></script>
+    <!-- Sweet-Alert  -->
+    <script src="<?php echo base_url("assets/Admin/plugins/sweet-alert2/sweetalert2.min.js"); ?>"></script>
+
     <!-- App js -->
     <script src="<?php echo base_url("assets/Admin/horizontal/assets/js/app.js"); ?>"></script>
     <!-- Barcode Scanner -->
