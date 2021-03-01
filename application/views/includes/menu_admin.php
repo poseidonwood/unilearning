@@ -156,25 +156,30 @@
                                         </ul>
                                     </li>                                    
                                 </ul>
-                            </li>                                                                                                                                                                                            
+                            </li>  
+
+                             <li class="has-submenu">
+                                <a href="#"><i class="fas fa-database"></i> Master <i class="mdi mdi-chevron-down mdi-drop"></i></a>
+                                <ul class="submenu">
+                                    <li class="has-submenu">
+                                        <a href="#">Skill</a>
+                                        <ul class="submenu submenu-right">
+                                            <li><a href="master_skill">Skill</a></li>
+                                            <li><a href="master_skill_pillar">Skill Pillar</a></li>
+                                            <li><a href="master_skill_category">Skill Category</a></li>
+                                            <li><a href="master_skill_group">Skill Group</a></li>
+                                        </ul>
+                                    </li>
+
+                                    <li><a href="master_department">Department</a></li>                                            
+                                    <li><a href="master_factory">Factory</a></li> 
+                                    <li><a href="master_sio_type">SIO Type</a></li> 
+                                </ul>
+                            </li>                                                                                                                                                                                          
 
                             <li class="has-submenu">
                                 <a href="user"><i class="fas fa-users"></i> User</a>
-                            </li>  
-
-                            <li class="has-submenu">
-                                <a href="#"><i class="fas fa-database"></i> Master<i class="mdi mdi-chevron-down mdi-drop"></i></a>
-                                <ul class="submenu megamenu">
-                                    <li>
-                                        <ul>
-                                            <li><a href="master_skill">Matrix Skill</a></li> 
-                                            <li><a href="master_department">Department</a></li>                                            
-                                            <li><a href="master_factory">Factory</a></li> 
-                                            <li><a href="master_sio_type">SIO Type</a></li> 
-                                        </ul>
-                                    </li>                                    
-                                </ul>
-                            </li> 
+                            </li>                                                  
 
 
                         </ul>
