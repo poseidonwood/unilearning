@@ -745,10 +745,12 @@
                             <form method="post" action="<?= base_url('database_e_certificate/importExcel') ?>" enctype="multipart/form-data">
                                 <small class="form-text text-left font-14 text-muted">Upload dengan format: xlsx,csv <br> Dengan makimal ukuran/size: 2 MB</small>
                                 <input type="file" id="upload2" name="excelimport" id="userfile1" accept=".csv,.xlsx,.xls">
-
+                                <!-- <div class="filepond--root">
+                                    <input type="file" class="my-pond" name="excelimport" id="userfile1" accept=".csv,.xlsx,.xls">
+                                </div> -->
                         </div>
-                    </div> <!-- end col -->
-                </div> <!-- end row -->
+                    </div>
+                </div>
             </div>
             <div class="text-center m-t-5 mb-5">
                 <button type="submit" class="btn btn-primary waves-effect waves-light">Import Files</button>
