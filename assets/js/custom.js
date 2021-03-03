@@ -558,7 +558,78 @@ function kirimAjukan() {
  }
 
 }
-// 
+// End Line Manager
+// Master Factory
+function editFactory(id) {
+  $.ajax({
+    type: 'POST',
+    url: base_url+'/master_factory/readupdate/',
+    data: {id:id},
+  }).done(function(data) {
+    var json = data,
+      obj = JSON.parse(json);
+      var idnya = obj.id;
+      var email = obj.email;
+      if(obj.message === true){  
+        var factory = obj.factory;
+        $('#factory_name_edit').val(factory);
+        $('#id_factory_name_edit').val(idnya);
+        $('#modalEditFactory').modal('show');  
+      }else{
+        Swal.fire(
+          'Gagal!',
+          'Data tidak ada',
+          'error'
+        )
+      }
+  });
+
+}
+function deleteFactory(id,nama) {
+  Swal.fire({
+    title: 'Hapus '+ nama +' dari list ?',
+    text: "Data yang di hapus tidak bisa kembalikan..",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Ya , Hapus!'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      $.ajax({
+        type: 'POST',
+        url: base_url+'/master_factory/delete/',
+        data: {
+          id:id,nama:nama
+        },
+      }).done(function(data) {
+        var json = data,
+          obj = JSON.parse(json);
+          console.log(obj.message);
+          if(obj.message === "Delete Success"){
+            Swal.fire(
+              'Terhapus!',
+              'Data berhasil di hapus',
+              'success'
+            )
+          window.location.href= base_url + obj.url;
+          }else{
+            Swal.fire(
+              'Gagal!',
+              'Data gagal di hapus',
+              'error'
+            )
+          }
+  
+          // window.location.href= base_url + '/proses/pembayaran/' + obj.id_transaksi;
+        // console(obj.notif);
+      });
+    }
+  })
+}
+
+
+// End Master Factory
 $("#tambah").click(function(){
   $("#modalTambah").modal("show");
 
