@@ -1,29 +1,29 @@
 <div class="wrapper">
     <!-- Start content -->
     <div class="content">
-        <div class="container-fluid"> 
+        <div class="container-fluid">
             <div class="page-title-box">
                 <div class="row align-items-center">
                     <div class="col-sm-6">
                         <!-- <h4 class="page-title">Training</h4> -->
-                    </div>                   
+                    </div>
                 </div>
                 <!-- end row -->
             </div>
-            
+
             <div class="row">
-                <div class="col-12">                    
+                <div class="col-12">
                     <div class="card m-b-30">
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-md-12">                                
+                                <div class="col-md-12">
                                     <div class="form-group row">
                                         <h4 class="mt-0 header-title">Master Department</h4>
-                                    </div>                            
+                                    </div>
                                 </div>
                             </div>
                             <div class="row mb-3">
-                                <div class="col-sm-8"> 
+                                <div class="col-sm-8">
                                     <!-- <div class="form-group row">                                                    
                                         <div class="col-sm-3">
                                             <label for="">Tanggal Awal</label>
@@ -39,9 +39,9 @@
                                             </div>                                                        
                                         </div>                                       
                                     </div>                                                     -->
-                                </div>  
-                                
-                                <div class="col-sm-4 text-right mt-4"> 
+                                </div>
+
+                                <div class="col-sm-4 text-right mt-4">
                                     <div class="form-group button-items btn btn-success" id="tambah">
                                         <span>
                                             <i class="fas fa-plus-circle"></i>
@@ -71,41 +71,52 @@
                                             <a class="dropdown-item" target="_BLANK" href="#">PDF</a>
                                             <a class="dropdown-item" href="#">Excel</a>
                                         </div>
-                                    </div>                                                                      
+                                    </div>
                                 </div>
-                            </div>  
+                            </div>
 
                             <div class="table-responsive">
                                 <table id="datatable-buttons" class="table table-bordered nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                     <thead>
                                         <tr>
                                             <th title="No">No</th>
-                                            <th title="Nama">Department Name</th>                                            
+                                            <th title="Nama">Department Code</th>
+                                            <th title="Nama">Department Name</th>
                                             <th class="text-center" title="Edit">Edit</th>
                                             <th class="text-center" title="Delete">Delete</th>
                                         </tr>
-                                    </thead>            
+                                    </thead>
                                     <tbody>
-                                        <tr>                                            
-                                            <td>
-                                                1
-                                            </td>
-                                            <td>Engineering Site</td>
-                                            <td class="text-center">      
-                                                <span style="width:5%">
-                                                    <span id="edit" class="btn btn-primary m-btn m-btn--icon btn-lg m-btn--icon-only">
-                                                        <i class="fas fa-pencil-alt"></i>
-                                                    </span>
-                                                </span>
-                                            </td>
-                                            <td class="text-center">
-                                                <span style="width:5%">
-                                                    <span class="hapus btn btn-danger m-btn m-btn--icon btn-lg m-btn--icon-only deletekar">
-                                                        <i class="far fa-trash-alt"></i>                                                    
-                                                    </span>
-                                                </span>                                                                                                  
-                                            </td>
-                                        </tr>                                                
+                                        <?php
+                                        if (is_array($datadepartment) || is_object($datadepartment)) {
+                                            $no = 1;
+                                            foreach ($datadepartment as $department) {
+                                        ?>
+                                                <tr>
+                                                    <td>
+                                                        <?= $no++; ?>
+                                                    </td>
+                                                    <td><?= $department->code; ?></td>
+                                                    <td><?= $department->department; ?></td>
+                                                    <td class="text-center">
+                                                        <span style="width:5%">
+                                                            <span id="edit" onclick="editDepartment('<?= $department->id; ?>')" class="btn btn-primary m-btn m-btn--icon btn-lg m-btn--icon-only">
+                                                                <i class="fas fa-pencil-alt"></i>
+                                                            </span>
+                                                        </span>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <span style="width:5%">
+                                                            <span onclick="deleteDepartment('<?= $department->id; ?>','<?= $department->department; ?>')" class="hapus btn btn-danger m-btn m-btn--icon btn-lg m-btn--icon-only deletekar">
+                                                                <i class="far fa-trash-alt"></i>
+                                                            </span>
+                                                        </span>
+                                                    </td>
+                                                </tr>
+                                        <?php
+                                            }
+                                        }
+                                        ?>
                                     </tbody>
                                 </table>
                             </div>
@@ -129,29 +140,44 @@
                 </button>
             </div>
             <div class="modal-body">
-                <div class="row">
-                    <div class="col-12">     
-                        <div class="form-group col-md-12">
-                            <div class="col-sm-12">
-                                <label for="">Department Name</label>
-                                <input class="form-control" type="text" name="department_name" value="" id="">
+                <form action="<?= base_url('master_department/add'); ?>" method="post">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-group col-md-12">
+                                <div class="col-sm-12">
+                                    <label for="">Department Code</label>
+                                    <input class="form-control" type="text" name="code" value="" id="" required>
+                                </div>
                             </div>
-                        </div>                    
-                    </div> <!-- end col -->                            
-                </div> <!-- end row -->                                              
+                            <div class="form-group col-md-12">
+                                <div class="col-sm-12">
+                                    <label for="">Department Name</label>
+                                    <input class="form-control" type="text" name="department" value="" id="" required>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="col-sm-12">
+                                    <label for="">Description</label>
+                                    <textarea class="form-control" name="ket" required></textarea>
+                                </div>
+                            </div>
+
+                        </div> <!-- end col -->
+                    </div> <!-- end row -->
             </div>
-            <div class="modal-footer">                                                            
-                <button type="button" id="" class="btn btn-danger" data-dismiss="modal" aria-label="Close"> Cancel</button>                                                                                                                        
-                <button type="button" id="" class="btn btn-primary">Simpan</button>                                                            
-            </div>    
+            <div class="modal-footer">
+                <button type="button" id="" class="btn btn-danger" data-dismiss="modal" aria-label="Close"> Cancel</button>
+                <button type="submit" id="" class="btn btn-primary">Simpan</button>
+            </div>
+            </form>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
-</div> 
+</div>
 <!-- End Modal Tambah -->
 
 <!-- Modal Edit -->
-<div class="modal fade" id="modalEdit" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+<div class="modal fade" id="modalEditDepartment" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-md">
         <div class="modal-content">
             <div class="modal-header">
@@ -161,25 +187,40 @@
                 </button>
             </div>
             <div class="modal-body">
-                <div class="row">
-                    <div class="col-12"> 
-                        <div class="form-group col-md-12">
-                            <div class="col-sm-12">
-                                <label for="">Department Name</label>
-                                <input class="form-control" type="text" name="department_name" value="" id="">
+                <form action="<?= base_url('master_department/update'); ?>" method="post">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-group col-md-12">
+                                <div class="col-sm-12">
+                                    <label for="">Department Code</label>
+                                    <input class="form-control" type="hidden" name="id" value="" id="id_edit" required>
+                                    <input class="form-control" type="text" name="code" value="" id="code_edit" required>
+                                </div>
                             </div>
-                        </div>                        
-                    </div> <!-- end col -->                            
-                </div> <!-- end row -->                                              
+                            <div class="form-group col-md-12">
+                                <div class="col-sm-12">
+                                    <label for="">Department Name</label>
+                                    <input class="form-control" type="text" name="department" value="" id="department_edit" required>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="col-sm-12">
+                                    <label for="">Description</label>
+                                    <textarea class="form-control" name="ket" id="ket_edit" required></textarea>
+                                </div>
+                            </div>
+                        </div> <!-- end col -->
+                    </div> <!-- end row -->
             </div>
-            <div class="modal-footer">                                                            
-                <button type="button" id="" class="btn btn-danger" data-dismiss="modal" aria-label="Close"> Cancel</button>                                                                                                                        
-                <button type="button" id="" class="btn btn-primary">Simpan</button>                                                            
-            </div>    
+            <div class="modal-footer">
+                <button type="button" id="" class="btn btn-danger" data-dismiss="modal" aria-label="Close"> Cancel</button>
+                <button type="submit" id="" class="btn btn-primary">Simpan</button>
+            </div>
+            </form>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
-</div> 
+</div>
 <!-- End Modal Edit -->
 
 <!---modal confirm import-->
@@ -202,11 +243,11 @@
                             </form>
                         </div>
                     </div> <!-- end col -->
-                </div> <!-- end row --> 
-            </div>        
-                <div class="text-center m-t-5 mb-5">
-                    <button type="button" class="btn btn-primary waves-effect waves-light">Import Files</button>
-                </div>            
+                </div> <!-- end row -->
+            </div>
+            <div class="text-center m-t-5 mb-5">
+                <button type="button" class="btn btn-primary waves-effect waves-light">Import Files</button>
+            </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->

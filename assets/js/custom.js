@@ -630,6 +630,79 @@ function deleteFactory(id,nama) {
 
 
 // End Master Factory
+// Master Department
+function editDepartment(id) {
+  $.ajax({
+    type: 'POST',
+    url: base_url+'/master_department/readupdate/',
+    data: {id:id},
+  }).done(function(data) {
+    var json = data,
+      obj = JSON.parse(json);
+      var idnya = obj.id;
+      if(obj.message === true){  
+        var department = obj.department;
+        $('#code_edit').val(obj.code);
+        $('#department_edit').val(department);
+        $('#ket_edit').val(obj.ket);
+        $('#id_edit').val(idnya);
+        $('#modalEditDepartment').modal('show');  
+      }else{
+        Swal.fire(
+          'Gagal!',
+          'Data tidak ada',
+          'error'
+        )
+      }
+  });
+
+}
+function deleteDepartment(id,nama) {
+  Swal.fire({
+    title: 'Hapus '+ nama +' dari list ?',
+    text: "Data yang di hapus tidak bisa kembalikan..",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Ya , Hapus!'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      $.ajax({
+        type: 'POST',
+        url: base_url+'/master_department/delete/',
+        data: {
+          id:id
+        },
+      }).done(function(data) {
+        var json = data,
+          obj = JSON.parse(json);
+          console.log(obj.message);
+          if(obj.message === "Delete Success"){
+            Swal.fire(
+              'Terhapus!',
+              'Data berhasil di hapus',
+              'success'
+            )
+          window.location.href= base_url + obj.url;
+          }else{
+            Swal.fire(
+              'Gagal!',
+              'Data gagal di hapus',
+              'error'
+            )
+          }
+  
+          // window.location.href= base_url + '/proses/pembayaran/' + obj.id_transaksi;
+        // console(obj.notif);
+      });
+    }
+  })
+}
+
+
+// End Master Department
+
 $("#tambah").click(function(){
   $("#modalTambah").modal("show");
 
