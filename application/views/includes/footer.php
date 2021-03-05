@@ -136,7 +136,6 @@
             			<script src="<?php echo base_url("assets/Admin/plugins/moment/moment.js"); ?>"></script>
             			<script src='<?php echo base_url("assets/Admin/plugins/fullcalendar/js/fullcalendar.min.js"); ?>'></script>
             			<script src="<?php echo base_url("assets/Admin/horizontal/assets/pages/calendar-init.js"); ?>"></script>
-
             			<!-- Sweet-Alert  -->
             			<!-- <script src="<?php echo base_url("assets/Admin/plugins/sweet-alert2/sweetalert2.min.js"); ?>"></script>
             			<script src="<?php echo base_url("assets/Admin/horizontal/assets/pages/mysweet-alert.js"); ?>"></script> -->
