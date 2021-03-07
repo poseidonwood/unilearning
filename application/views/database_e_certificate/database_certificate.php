@@ -346,8 +346,13 @@
                                             <div class="form-group col-md-12">
                                                 <div class="col-sm-12">
                                                     <label for="">Certificate Factory</label>
-                                                    <select class="form-control js-example-basic-single" name="" id="" style="width: 100%;">
+                                                    <select class="form-control factory_select2" name="factory" id="" style="width: 100%;">
                                                         <option value="0">-- Choice Certificate Factory --</option>
+                                                        <?php
+                                                        foreach ($factorydata as $factorylist) {
+                                                            echo "<option value ='$factorylist->factory'>$factorylist->factory</option>";
+                                                        }
+                                                        ?>
                                                     </select>
                                                 </div>
                                             </div>

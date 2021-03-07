@@ -24,6 +24,15 @@ $(document).ready(function () {
 		// allowClear: true,
 
       });
+        $( ".factory_select2" ).select2({
+        theme: "bootstrap",
+        placeholder: "Select a State",
+        containerCssClass: ':all:',
+        // width: 'auto',
+		// dropdownAutoWidth: true,
+		// allowClear: true,
+
+      });
       $( ".department-select2" ).select2({
         theme: "bootstrap",
         placeholder: "Select a State",

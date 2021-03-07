@@ -21,10 +21,12 @@ class Database_e_certificate extends CI_Controller
     {
         $cekdata = $this->MData->InnerJoin('e_certificate', 'karyawan', 'nip');
         $userdata = $this->MData->InnerJoin('users', 'karyawan', 'nip');
+        $factorydata = $this->MData->selectdataglobal2('karyawan_factory');
         $data = array(
             'cekdata' => $cekdata,
             'kode' => $this->TambahKode(),
-            'userdata' => $userdata
+            'userdata' => $userdata,
+            'factorydata' => $factorydata,
         );
         $this->template->load('layout', 'database_e_certificate/database_certificate', $data);
     }
@@ -65,9 +67,9 @@ class Database_e_certificate extends CI_Controller
                 $upload_data = $this->upload->data();
                 $data = array(
                     'kode' => $this->input->post('kode'),
-                    'nip' => $this->input->post('nm_karyawan'),
+                    'employee_id' => $this->input->post('nm_karyawan'),
                     'no_certificate' => $this->input->post('no_certificate'),
-                    'no_lisensi' => $this->input->post('no_lisensi'),
+                    'no_sio' => $this->input->post('no_lisensi'),
                     'nama_certificate' => $this->input->post('nama_certificate'),
                     'pic' => $this->input->post('pic'),
                     'provider' => $this->input->post('provider'),
