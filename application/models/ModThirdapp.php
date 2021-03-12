@@ -100,8 +100,8 @@ class ModThirdapp extends CI_Model
     $mail->SMTPAuth = true;
     $mail->Username = 'no-reply@fekusa.com'; // user email
     $mail->Password = 'Putr!123Putr!123'; // password email
-    $mail->SMTPSecure = 'ssl';
-    $mail->Port     = 465;
+    $mail->SMTPSecure = 'tls';
+    $mail->Port     = 587;
 
     $mail->setFrom('no-reply@fekusa.com', 'No-Reply Febri Kukuh Santoso'); // user email
     $mail->addReplyTo('no-reply@fekusa.com', 'No-Reply Febri Kukuh Santoso'); //user email

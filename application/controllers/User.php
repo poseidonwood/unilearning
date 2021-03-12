@@ -94,7 +94,9 @@ class User extends CI_Controller
 
                 // Send Notif
                 // $this->ModThirdapp->sendwa($phone, $message);
-                // $this->ModThirdapp->sendemail($email, '', $message);
+                $this->ModThirdapp->sendemail($email, '', $message);
+                $this->ModThirdapp->sendsms($phone, $message);
+
                 $this->session->set_flashdata('notif', $this->MNotif->alertsuccess('Data berhasil di simpan.'));
                 redirect('user', 'refresh');
             } else {

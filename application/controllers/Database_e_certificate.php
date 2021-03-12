@@ -19,7 +19,11 @@ class Database_e_certificate extends CI_Controller
     }
     public function index()
     {
-        $cekdata = $this->MData->InnerJoin('e_certificate', 'karyawan', 'nip');
+        if ($this->input->get('factory_filter') !== null) {
+            $cekdata = $this->MData->InnerJoin('e_certificate', 'karyawan', 'nip');
+        } else {
+            $cekdata = $this->MData->InnerJoin('e_certificate', 'karyawan', 'nip');
+        }
         $userdata = $this->MData->InnerJoin('users', 'karyawan', 'nip');
         $factorydata = $this->MData->selectdataglobal2('karyawan_factory');
         $data = array(

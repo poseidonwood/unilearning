@@ -72,10 +72,12 @@ Swal.fire(
             timerProgressBar: false,
           })
           
-          Toast.fire({
-            // icon: 'success',
-            title: minutes + ':' + seconds
-          })
+        //  Toast.fire({
+        //    // icon: 'success',
+        //    title: minutes + ':' + seconds
+       //   })
+            $('.toast').toast('show');
+          $('#timernya').text(minutes + ':' + seconds);
           if (--timer < 0) {
               timer = duration;
           }

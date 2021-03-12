@@ -234,7 +234,7 @@
                             <div class="form-group col-md-12">
                                 <label class="control-label">Nama Materi</label>
                                 <input class="form-control" required type="text" value="" name="judul" id="" required>
-                                <input class="form-control" required type="hidden" value="" id="inimatericatid" required>
+                                <input class="form-control" required type="text" value="" id="inimatericatid" name="materi_cat_idnya" required>
 
                             </div>
                         </div>

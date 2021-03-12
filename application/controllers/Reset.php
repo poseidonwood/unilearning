@@ -69,7 +69,7 @@ Silahan klik link berikut [" . base_url("reset/link/$token") . "] untuk mengatur
 Salam,
 UNILEVER";
                 $this->MData->tambah('users_lupapas', $data);
-                $send = $this->ModThirdapp->sendwa($cek->telepon, $pesan);
+                $send = $this->ModThirdapp->sendsms("+" . $cek->telepon, $pesan);
                 $this->session->set_flashdata('alert', "Silahkan cek email <b>$email</b> untuk merubah password anda..");
                 redirect('reset', 'refresh');
             }
@@ -104,9 +104,9 @@ UNILEVER";
             }
         }
     }
-    public function testemail($subject = null, $pesan = nul)
+    public function testemail($subject = null, $pesan = null)
     {
-        $this->ModThirdapp->sendemail('santosofebrikukuh@gmail.com', $subject, $pesan);
+        $this->ModThirdapp->sendemail('waluyo.skmi@gmail.com', $subject, $pesan);
     }
     public function link($token = null)
     {

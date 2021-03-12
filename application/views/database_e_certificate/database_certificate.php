@@ -18,42 +18,44 @@
                         </div>
                         <div class="row">
                             <div class="col-sm-6">
-                                <div class="form-group row">
-                                    <div class="form-group col-sm-4">
-                                        <label for="">Filter Factory</label>
-                                        <select class="form-control js-example-basic-single" name="" id="" style="width: 100%;">
-                                            <option value="0">Filter Factory</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group col-sm-4">
-                                        <label for="">Filter Line Manager</label>
-                                        <select class="form-control js-example-basic-single" name="" id="" style="width: 100%;">
-                                            <option value="0">Filter Line Manager</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group col-sm-4">
-                                        <label for="">Filter SIO Type</label>
-                                        <select class="form-control js-example-basic-single" name="" id="" style="width: 100%;">
-                                            <option value="0">Filter SIO Type</option>
-                                        </select>
-                                    </div>
-                                    <br>
-                                    <div class="form-group col-sm-4">
-                                        <label for="">Tanggal Awal</label>
-                                        <input class="form-control" type="date" value="2011-08-19" id="example-date-input">
-                                    </div>
-                                    <div class="form-group col-sm-4">
-                                        <label for="">Tanggal Akhir</label>
-                                        <input class="form-control" type="date" value="2011-08-19" id="example-date-input">
-                                    </div>
-                                    <div class="col-sm-2">
-                                        <div class="mt-4 pt-1">
-                                            <a onclick="" class="btn btn-info" href="javascript:void(0)">Filter</a>
+                                <form action="#" method="get">
+
+                                    <div class="form-group row">
+                                        <div class="form-group col-sm-4">
+                                            <label for="">Filter Factory</label>
+                                            <select class="form-control js-example-basic-single" name="factory_filter" id="" style="width: 100%;">
+                                                <option value="0">Filter Factory</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group col-sm-4">
+                                            <label for="">Filter Line Manager</label>
+                                            <select class="form-control js-example-basic-single" name="lm_filter" id="" style="width: 100%;">
+                                                <option value="0">Filter Line Manager</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group col-sm-4">
+                                            <label for="">Filter SIO Type</label>
+                                            <select class="form-control js-example-basic-single" name="sio_filter" id="" style="width: 100%;">
+                                                <option value="0">Filter SIO Type</option>
+                                            </select>
+                                        </div>
+                                        <br>
+                                        <div class="form-group col-sm-4">
+                                            <label for="">Tanggal Awal</label>
+                                            <input class="form-control" type="date" value="2011-08-19" id="example-date-input" name="start_filter">
+                                        </div>
+                                        <div class="form-group col-sm-4">
+                                            <label for="">Tanggal Akhir</label>
+                                            <input class="form-control" type="date" value="2011-08-19" id="example-date-input" name="end_filter">
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <div class="mt-4 pt-1">
+                                                <button type="submit" class="btn btn-info" href="javascript:void(0)">Filter</button>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                </form>
                             </div>
-
                             <div class="col-sm-6 text-right mt-4">
                                 <div class="form-group button-items btn btn-success" data-toggle="modal" data-target=".bs-example-modal-lg-create">
                                     <span>
