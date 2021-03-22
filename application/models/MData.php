@@ -18,6 +18,34 @@ class MData extends CI_Model
       return $query->result();
     }
   }
+  function InnerJoin2id($table1, $table2, $data, $data1)
+  {
+    // $this->db->query("SELECT * FROM $table LEFT JOIN karyawan ON users.nip = karyawan.nip");
+    $this->db->select('*');
+    $this->db->from($table1);
+    $this->db->join($table2, "$table1" . '.' . "$data1 = $table2" . '.' . "$data");
+    $query = $this->db->get();
+    if ($query->num_rows() == 0) {
+      return FALSE;
+    } else {
+      return $query->result();
+    }
+  }
+  function InnerJoin2idWhere($table1, $table2, $data, $data1, $value)
+  {
+    // $this->db->query("SELECT * FROM $table LEFT JOIN karyawan ON users.nip = karyawan.nip");
+    $this->db->select('*');
+    $this->db->from($table1);
+    $this->db->join($table2, "$table1" . '.' . "$data1 = $table2" . '.' . "$data");
+    $this->db->where($value);
+    $query = $this->db->get();
+    if ($query->num_rows() == 0) {
+      return FALSE;
+    } else {
+      return $query->result();
+    }
+  }
+
   function InnerJoinWhere($table1, $table2, $data, $value)
   {
     // $this->db->query("SELECT * FROM $table LEFT JOIN karyawan ON users.nip = karyawan.nip");
@@ -32,6 +60,22 @@ class MData extends CI_Model
       return $query->row();
     }
   }
+  function InnerJoinLike($table1, $table2, $data, $value, $start_date, $end_date)
+  {
+    // $this->db->query("SELECT * FROM $table LEFT JOIN karyawan ON users.nip = karyawan.nip");
+    $this->db->select('*');
+    $this->db->from($table1);
+    $this->db->join($table2, "$table1" . '.' . "$data = $table2" . '.' . "$data");
+    $this->db->or_like($value);
+    $this->db->or_where('tanggal_expired BETWEEN "' . date('Y-m-d', strtotime($start_date)) . '" and "' . date('Y-m-d', strtotime($end_date)) . '"');
+    $query = $this->db->get();
+    if ($query->num_rows() == 0) {
+      return FALSE;
+    } else {
+      return $query->result();
+    }
+  }
+
   function InnerJoinWhereResult($table1, $table2, $data, $value)
   {
     // $this->db->query("SELECT * FROM $table LEFT JOIN karyawan ON users.nip = karyawan.nip");
@@ -48,6 +92,18 @@ class MData extends CI_Model
   }
 
   function selectdata($table, $value)
+  {
+    $this->db->select('*');
+    $this->db->from($table);
+    $this->db->where($value);
+    $query = $this->db->get();
+    if ($query->num_rows() == 0) {
+      return FALSE;
+    } else {
+      return $query->result();
+    }
+  }
+  function selectcolumn($column, $table, $value)
   {
     $this->db->select('*');
     $this->db->from($table);
@@ -98,6 +154,19 @@ class MData extends CI_Model
       return $query->result_array();
     }
   }
+  function selectdatawhereorderby($table, $value)
+  {
+    $this->db->select('*');
+    $this->db->from($table);
+    $this->db->where($value);
+    $this->db->order_by('start_login', 'desc');
+    $query = $this->db->get();
+    if ($query->num_rows() == 0) {
+      return FALSE;
+    } else {
+      return $query->row();
+    }
+  }
   function selectdatawhere($table, $value)
   {
     $this->db->select('*');
@@ -136,6 +205,21 @@ class MData extends CI_Model
       return $query->result();
     }
   }
+  function selectdataglobal2log($table)
+  {
+    $this->db->select('*');
+    $this->db->from($table);
+    // $this->db->where($value);
+    $this->db->order_by('created_at', 'desc');
+    $this->db->limit(100);
+    $query = $this->db->get();
+    if ($query->num_rows() == 0) {
+      return FALSE;
+    } else {
+      return $query->result();
+    }
+  }
+
 
   function selectcolomnsingledata($colomn, $table, $value)
   {

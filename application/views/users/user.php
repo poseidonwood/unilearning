@@ -8,7 +8,7 @@
         <div class="row">
             <div class="col-xl-12">
                 <div class="card m-b-30">
-                    <div class="card-body">                        
+                    <div class="card-body">
 
                         <!-- Nav tabs -->
                         <ul class="nav nav-pills" role="tablist">
@@ -33,9 +33,9 @@
                                             <h4 class="mt-0 mb-4 header-title">data user</h4>
                                         </div>
                                     </div>
-                                    
+
                                     <div class="col-sm-4 text-right">
-                                        <div class="form-group button-items btn btn-success" data-toggle="modal" data-target=".bs-example-modal-lg-create_user">                                           
+                                        <div class="form-group button-items btn btn-success" data-toggle="modal" data-target=".bs-example-modal-lg-create_user">
                                             <span>
                                                 <i class="fas fa-plus-circle"></i>
                                                 <span>
@@ -45,7 +45,7 @@
                                             </a>
                                         </div>
 
-                                        <div class="form-group button-items btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-import-user">                                           
+                                        <div class="form-group button-items btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-import-user">
                                             <span>
                                                 <i class="fas fa-file-import"></i>
                                                 <span>
@@ -54,7 +54,7 @@
                                             </span>
                                             </a>
                                         </div>
-                                        
+
                                         <div class="btn-group mb-3">
                                             <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                 <i class="fas fa-download"></i>
@@ -66,7 +66,7 @@
                                                 <a class="dropdown-item" target="_BLANK" href="#">PDF</a>
                                                 <a class="dropdown-item" href="#">Excel</a>
                                             </div>
-                                        </div> 
+                                        </div>
                                     </div>
                                 </div>
 
@@ -95,19 +95,19 @@
                                                     $status = "<span class='badge badge-pill badge-danger'>NON- AKTIF</span>";
                                                 }
                                                 // get nama by nip
-                                                $this->db->select('nama');
-                                                $this->db->from('karyawan');
-                                                $this->db->where(array('nip' => $userlist->nip));
+                                                $this->db->select('employee_name');
+                                                $this->db->from('karyawan_revisi');
+                                                $this->db->where(array('employee_id' => $userlist->employee_id));
                                                 $qnama = $this->db->get();
                                                 if ($qnama->num_rows() > 0) {
-                                                    $nama = $qnama->row()->nama;
+                                                    $nama = $qnama->row()->employee_name;
                                                 } else {
                                                     $nama = "TIDAK ADA DI KARYAWAN LIST";
                                                 }
                                                 echo
                                                 "<tr>
                                             <td>" . $no++ . "</td>
-                                            <td>$userlist->nip</td>
+                                            <td>$userlist->employee_id</td>
                                             <td>$nama</td>
                                             <td>$userlist->email</td>
                                             <td>$userlist->role</td>
@@ -142,9 +142,9 @@
                                             <h4 class="mt-0 mb-4 header-title">data karyawan</h4>
                                         </div>
                                     </div>
-                                   
+
                                     <div class="col-sm-4 text-right">
-                                        <div class="form-group button-items btn btn-success" data-toggle="modal" data-target=".bs-example-modal-lg-create_karyawan">                                            
+                                        <div class="form-group button-items btn btn-success" data-toggle="modal" data-target=".bs-example-modal-lg-create_karyawan">
                                             <span>
                                                 <i class="fas fa-plus-circle"></i>
                                                 <span>
@@ -154,7 +154,7 @@
                                             </a>
                                         </div>
 
-                                        <div class="form-group button-items btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-import-karyawan">                                           
+                                        <div class="form-group button-items btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-import-karyawan">
                                             <span>
                                                 <i class="fas fa-file-import"></i>
                                                 <span>
@@ -162,7 +162,7 @@
                                                 </span>
                                             </span>
                                             </a>
-                                        </div>    
+                                        </div>
 
                                         <div class="btn-group mb-3">
                                             <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -175,7 +175,7 @@
                                                 <a class="dropdown-item" target="_BLANK" href="#">PDF</a>
                                                 <a class="dropdown-item" href="#">Excel</a>
                                             </div>
-                                        </div> 
+                                        </div>
                                     </div>
                                 </div>
 
@@ -185,12 +185,14 @@
                                             <tr>
                                                 <th>No.</th>
                                                 <th>Image</th>
-                                                <th>Employee ID</th>
-                                                <th>Employee Name</th>
-                                                <th>Email</th>
+                                                <th>ID</th>
+                                                <th>Name</th>
+                                                <th>Title</th>
                                                 <th>Department</th>
+                                                <th>Line Manager</th>
                                                 <th>Factory</th>
-                                                <th>No. Hp</th>
+                                                <th>Email</th>
+                                                <th>Telepon</th>
                                                 <th>Status</th>
                                                 <th>Created at</th>
                                                 <th>Update at</th>
@@ -202,19 +204,21 @@
                                             <?php
                                             $no = 1;
                                             foreach ($datakaryawan as $karyawanlist) {
-                                                if ($karyawanlist->status == "aktif") {
+                                                if ($karyawanlist->status == "active") {
                                                     $status_kar = "<span class='badge badge-pill badge-success'>AKTIF</span>";
                                                 } else {
                                                     $status_kar = "<span class='badge badge-pill badge-danger'>NON- AKTIF</span>";
                                                 }
                                                 echo "<tr>
                                                 <td>" . $no++ . "</td>
-                                                <td><img src='" . base_url('assets/img/user/') . $karyawanlist->photo . "' alt='$karyawanlist->photo' width='100px'></td>
-                                                <td>$karyawanlist->nip</td>
-                                                <td>$karyawanlist->nama</td>
-                                                <td>$karyawanlist->email</td>
+                                                <td><img src='" . base_url('assets/img/user/') . $karyawanlist->image . "' alt='$karyawanlist->image' width='25px'></td>
+                                                <td>$karyawanlist->employee_id</td>
+                                                <td>$karyawanlist->employee_name</td>
+                                                <td>$karyawanlist->business_title</td>
                                                 <td>$karyawanlist->department</td>
-                                                <td>$karyawanlist->location</td>
+                                                <td>$karyawanlist->linemanager_name</td>
+                                                <td>$karyawanlist->factory</td>
+                                                <td>$karyawanlist->email</td>
                                                 <td>$karyawanlist->telepon</td>
                                                 <td>$status_kar</td>
                                                 <td>$karyawanlist->created_at</td>
@@ -223,14 +227,14 @@
                                             ?>
                                                 <td>
                                                     <span style="width:113px">
-                                                        <a href="#" onclick="EditKaryawan('<?= $karyawanlist->nip; ?>','<?= $karyawanlist->nama; ?>')" class="btn btn-primary m-btn m-btn--icon btn-lg m-btn--icon-only">
+                                                        <a href="#" onclick="EditKaryawan('<?= $karyawanlist->employee_id; ?>','<?= $karyawanlist->employee_name; ?>')" class="btn btn-primary m-btn m-btn--icon btn-lg m-btn--icon-only">
                                                             <i class="fas fa-pencil-alt"></i>
                                                         </a>
                                                         <span>
                                                 </td>
                                                 <td>
                                                     <span style="width:113px">
-                                                        <a href="#" class="hapus btn btn-danger m-btn m-btn--icon btn-lg m-btn--icon-only deletekar" onclick="deleteKaryawan('<?= $karyawanlist->nip; ?>','<?= $karyawanlist->nama; ?>')">
+                                                        <a href="#" class="hapus btn btn-danger m-btn m-btn--icon btn-lg m-btn--icon-only deletekar" onclick="deleteKaryawan('<?= $karyawanlist->employee_id; ?>','<?= $karyawanlist->employee_name; ?>')">
                                                             <i class="far fa-trash-alt"></i>
                                                         </a>
                                                     </span>
@@ -711,7 +715,7 @@
                                                         <?php
                                                         foreach ($linemanagerdata as $lmlist) {
                                                             echo "
-                                                        <option value='$lmlist->nip'>$lmlist->nama - Line Manager</option>
+                                                        <option value='$lmlist->employee_id'>$lmlist->nama - Line Manager</option>
                                            ";
                                                         }
                                                         ?>
@@ -778,17 +782,17 @@
                 <div class="row mt-3">
                     <div class="col-12">
                         <div class="m-b-30">
-                            <form action="#" class="">
+                            <form action="<?= base_url('user/import'); ?>" class="" method="post" enctype="multipart/form-data">
                                 <small class="form-text text-left font-14 text-muted">Upload dengan format: xlsx,csv <br> Dengan makimal ukuran/size: 2 MB</small>
-                                <input type="file" id="upload2" name="filenya" onChange="upload_file2(1)" id="userfile1" accept=".csv,.xlsx">
-                            </form>
+                                <input type="file" name="excelimport" accept=".csv,.xlsx">
                         </div>
                     </div> <!-- end col -->
-                </div> <!-- end row --> 
-            </div>        
-                <div class="text-center m-t-5 mb-5">
-                    <button type="button" class="btn btn-primary waves-effect waves-light">Import File</button>
-                </div>            
+                </div> <!-- end row -->
+            </div>
+            <div class="text-center m-t-5 mb-5">
+                <button type="submit" class="btn btn-primary waves-effect waves-light">Import File</button>
+            </div>
+            </form>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
@@ -813,11 +817,11 @@
                             </form>
                         </div>
                     </div> <!-- end col -->
-                </div> <!-- end row --> 
-            </div>        
-                <div class="text-center m-t-5 mb-5">
-                    <button type="button" class="btn btn-primary waves-effect waves-light">Import File</button>
-                </div>            
+                </div> <!-- end row -->
+            </div>
+            <div class="text-center m-t-5 mb-5">
+                <button type="button" class="btn btn-primary waves-effect waves-light">Import File</button>
+            </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->

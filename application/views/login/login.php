@@ -14,7 +14,8 @@
     <link href="<?php echo base_url("assets/Admin/horizontal/assets/css/metismenu.min.css"); ?>" rel="stylesheet" type="text/css">
     <link href="<?php echo base_url("assets/Admin/horizontal/assets/css/icons.css"); ?>" rel="stylesheet" type="text/css">
     <link href="<?php echo base_url("assets/Admin/horizontal/assets/css/style.css"); ?>" rel="stylesheet" type="text/css">
-
+    <!-- Sweet-Alert  -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <style>
         #numtel {
             position: fixed;
@@ -65,6 +66,7 @@
     </div>
 </div>";
                 }
+
                 if ($this->session->flashdata('alert') == true) {
 
                     echo "
@@ -77,8 +79,7 @@
     </div>";
                 }
                 ?>
-                <form class="form-horizontal m-t-30" method="POST" action="login/validate">
-
+                <form class="form-horizontal m-t-30" method="POST" action="<?= base_url('login/validate'); ?>">
                     <div class="form-group">
                         <div class="col-12">
                             <label>NIP</label>
@@ -155,14 +156,15 @@
     <script src="<?php echo base_url("assets/Admin/horizontal/assets/js/metismenu.min.js"); ?>"></script>
     <script src="<?php echo base_url("assets/Admin/horizontal/assets/js/jquery.slimscroll.js"); ?>"></script>
     <script src="<?php echo base_url("assets/Admin/horizontal/assets/js/waves.min.js"); ?>"></script>
-    <!-- Sweet-Alert  -->
-    <script src="<?php echo base_url("assets/Admin/plugins/sweet-alert2/sweetalert2.min.js"); ?>"></script>
-
     <!-- App js -->
     <script src="<?php echo base_url("assets/Admin/horizontal/assets/js/app.js"); ?>"></script>
     <!-- Barcode Scanner -->
     <script src="<?php echo base_url("assets/js/html5-qrcode-demo.js"); ?>"></script>
 
+    <script>
+
+
+    </script>
 
 </body>
 

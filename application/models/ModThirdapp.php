@@ -20,7 +20,7 @@ class ModThirdapp extends CI_Model
     $curl = curl_init();
 
     curl_setopt_array($curl, array(
-      CURLOPT_URL => "https://fekusa-wa.herokuapp.com/send-message",
+      CURLOPT_URL => "http://172.104.56.241:8000/send-message",
       //   CURLOPT_URL => "http://ngirimwa.com/api/send-message.php",
       CURLOPT_RETURNTRANSFER => true,
       CURLOPT_ENCODING => "",

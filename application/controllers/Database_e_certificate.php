@@ -20,17 +20,25 @@ class Database_e_certificate extends CI_Controller
     public function index()
     {
         if ($this->input->get('factory_filter') !== null) {
-            $cekdata = $this->MData->InnerJoin('e_certificate', 'karyawan', 'nip');
+            $factory_filter = $this->input->get('factory_filter');
+            $lm_filter = $this->input->get('lm_filter');
+            $sio_filter = $this->input->get('sio_filter');
+            $start_filter = $this->input->get('start_filter');
+            $end_filter = $this->input->get('end_filter');
+            $cekdata = $this->MData->InnerJoinLike('e_certificate_revisi', 'karyawan_revisi', 'employee_id', array('factory' => $factory_filter, 'linemanager' => $lm_filter, 'no_sio' => $sio_filter), $start_filter, $end_filter);
         } else {
-            $cekdata = $this->MData->InnerJoin('e_certificate', 'karyawan', 'nip');
+            $cekdata = $this->MData->InnerJoin('e_certificate_revisi', 'karyawan_revisi', 'employee_id');
         }
-        $userdata = $this->MData->InnerJoin('users', 'karyawan', 'nip');
+        $userdata = $this->MData->InnerJoin2id('users', 'karyawan_revisi', 'employee_id', 'nip');
+        $linemanagerdata = $this->MData->InnerJoin2idWhere('users', 'karyawan_revisi', 'employee_id', 'nip', array('role' => 'LINE MANAGER'));
         $factorydata = $this->MData->selectdataglobal2('karyawan_factory');
         $data = array(
             'cekdata' => $cekdata,
             'kode' => $this->TambahKode(),
             'userdata' => $userdata,
             'factorydata' => $factorydata,
+            // 'linemanagerdata' => $this->MData->selectdata('users', array('role' => 'LINE MANAGER'))
+            'linemanagerdata' => $linemanagerdata
         );
         $this->template->load('layout', 'database_e_certificate/database_certificate', $data);
     }
@@ -54,7 +62,7 @@ class Database_e_certificate extends CI_Controller
     public function proses()
     {
 
-        if ((null !== $this->input->post('nm_karyawan'))) {
+        if ((null !== $this->input->post('employee_id'))) {
             $config['upload_path']          = './assets/img/uploads';
             $config['allowed_types']        = 'gif|jpg|png|jpeg|pdf';
             $config['max_size']             = 2048;
@@ -71,10 +79,10 @@ class Database_e_certificate extends CI_Controller
                 $upload_data = $this->upload->data();
                 $data = array(
                     'kode' => $this->input->post('kode'),
-                    'employee_id' => $this->input->post('nm_karyawan'),
+                    'employee_id' => $this->input->post('employee_id'),
                     'no_certificate' => $this->input->post('no_certificate'),
-                    'no_sio' => $this->input->post('no_lisensi'),
-                    'nama_certificate' => $this->input->post('nama_certificate'),
+                    'no_sio' => $this->input->post('no_sio'),
+                    'jenis_lisensi' => $this->input->post('jenis_lisensi'),
                     'pic' => $this->input->post('pic'),
                     'provider' => $this->input->post('provider'),
                     'tanggal_terbit' => $this->input->post('tanggal_terbit'),
@@ -83,7 +91,7 @@ class Database_e_certificate extends CI_Controller
                     'files' => $upload_data['file_name']
                 );
 
-                $save = $this->MData->tambah('e_certificate', $data);
+                $save = $this->MData->tambah('e_certificate_revisi', $data);
                 if ($save == true) {
                     $this->session->set_flashdata('notif', $this->MNotif->alertsuccess('Data berhasil di simpan'));
                     redirect('database_e_certificate', 'refresh');
@@ -155,7 +163,7 @@ class Database_e_certificate extends CI_Controller
     public function delete()
     {
         if ($this->input->post('id') !== null) {
-            $delete = $this->MData->delete('e_certificate', array('kode' => $this->input->post('id')));
+            $delete = $this->MData->delete('e_certificate_revisi', array('kode' => $this->input->post('id')));
             if ($delete == true) {
                 echo json_encode(array('message' => 'Delete Success', 'url' => '/database_e_certificate'));
             } else {
@@ -168,7 +176,7 @@ class Database_e_certificate extends CI_Controller
     public function dataedit()
     {
         if ($this->input->post('id') !== null) {
-            $select = $this->MData->selectsingledata('e_certificate', array('kode' => $this->input->post('id')));
+            $select = $this->MData->selectsingledata('e_certificate_revisi', array('kode' => $this->input->post('id')));
             if ($select == true) {
                 $data = array(
                     "kode" => $select->kode,

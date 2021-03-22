@@ -38,4 +38,45 @@ class Maintenance extends CI_Controller
       }
     }
   }
+  public function log($value = null)
+  {
+    $url1 = current_url();
+    $sec = "5";
+    $content = "content='$sec;URL='$url1'";
+    if ($value == null || $value == "") {
+      $select = $this->MData->selectdataglobal2log('logger');
+      // Cek value 
+      if (is_array($select) || is_object($select)) {
+        foreach ($select as $logger) {
+          $datalog = $logger->logger;
+          $datanya[] = $datalog . "<br>";
+        }
+      } else {
+        echo json_encode(array('result' => 'false', 'message' => 'data unknown'));
+      }
+
+      echo "
+      <html>
+          <head>
+          <meta http-equiv='refresh' " . $content . ">
+          </head>
+          <body>
+         " . implode("", $datanya) . "
+          </body>
+      </html>";
+    } else {
+      $select = $this->MData->selectdata('logger', array('level' => $value));
+      // Cek value 
+      if (is_array($select) || is_object($select)) {
+        foreach ($select as $logger) {
+          $datalog = $logger->logger;
+          echo json_encode($datalog);
+        }
+      } else {
+        echo json_encode(array('result' => 'false', 'message' => 'data unknown'));
+      }
+    }
+
+    // header("Refresh: 5; URL=$url1");
+  }
 }

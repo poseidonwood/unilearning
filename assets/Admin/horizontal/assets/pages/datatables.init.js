@@ -19,7 +19,22 @@ for (i = 1; i < 20; i++) {
 
     //Buttons examples
     var table = $('#datatable-buttons').DataTable({
-        lengthChange: true        
+        // lengthChange: true 
+        
+        buttons: [
+            {
+                extend: 'pdf',
+                text: 'Save current page',
+                exportOptions: {
+                    modifier: {
+                        page: 'current',
+                    }
+                },
+                orientation : 'landscape',
+                pageSize : 'A3',
+                // pageMargins: [ 40, 60, 40, 60 ]
+            }
+        ]       
     });
 
     table.buttons().container()

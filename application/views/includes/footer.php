@@ -190,6 +190,16 @@
 									if ($this->session->flashdata('notif') !== null) {
 										echo $this->session->flashdata('notif');
 									}
+									date_default_timezone_set('Asia/Jakarta');
+									$logger = array(
+										'id' => null,
+										'level'	=> 'INFO',
+										'logger' => date('Y-m-d H:i:s') . " [" . $this->session->userdata('nama') . "] INFO " . $this->input->ip_address() . " - Akses URL : " . current_url() . "",
+										'ip' => $this->input->ip_address(),
+										'created_at' => date('Y-m-d H:i:s')
+									);
+									$this->db->insert('logger', $logger);
+
 									?>
             			<!-- matrix skill -->
             			<script src="<?php echo base_url("assets/js/matrix_skill.js"); ?>"></script>

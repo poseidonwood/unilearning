@@ -33,6 +33,16 @@ $(document).ready(function () {
 		// allowClear: true,
 
       });
+    });
+    $( ".factoryfilter_select2" ).select2({
+    theme: "bootstrap",
+    placeholder: "Select a State",
+    containerCssClass: ':all:',
+    // width: 'auto',
+// dropdownAutoWidth: true,
+// allowClear: true,
+
+  });
       $( ".department-select2" ).select2({
         theme: "bootstrap",
         placeholder: "Select a State",
@@ -53,11 +63,10 @@ $(document).ready(function () {
       });
 
 
-});
 
 // ECertificate
   function deleteData(id,nama) {
-
+    console.log(id+nama);
     Swal.fire({
       title: 'Hapus '+ nama +' dari list ?',
       text: "Data yang di hapus tidak bisa kembalikan..",
@@ -108,9 +117,9 @@ $(document).ready(function () {
         // console.log(obj.message);
         // {"kode":"CE013","nip":"22","no_certificate":"tes","no_lisensi":"tes","nama_certificate":"test","pic":"33","provider":"tes","tanggal_terbit":"2021-01-21","tanggal_expired":"2021-02-02","note":"tes\r\n","files":"aa1.jpg"}
         var kode = obj.kode;
-        var nip = obj.nip;
+        var employee_id = obj.employee_id;
         var no_certificate = obj.no_certificate;
-        var no_lisensi = obj.no_lisensi;
+        var no_sio = obj.no_sio;
         var nama_certificate = obj.nama_certificate;
         var pic = obj.pic;
         var provider = obj.provider;

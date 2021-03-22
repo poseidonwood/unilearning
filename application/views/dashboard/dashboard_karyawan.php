@@ -5,7 +5,7 @@
             <div class="col-sm-6 col-xl-12 text-center">
                 <h4 class="text-left card-title">Selamat Datang, <?= ($this->session->userdata('nama')); ?> </h4>
                 <img src="<?php echo base_url('assets/img/user/') . $this->session->userdata('photo'); ?>" width="200px" class="rounded-circle" height="200px">
-                <h5 class="card-text mt-4"><?= $this->session->userdata('nama'); ?> - <?= $this->session->userdata('nip'); ?> - <?= $this->session->userdata('department'); ?>
+                <h5 class="card-text mt-4"><?= $this->session->userdata('nama'); ?> - <?= $this->session->userdata('employee_id'); ?> - <?= $this->session->userdata('business_title'); ?>
                 </h5>
                 <p class="card-text mt-2">Learning Point</p>
             </div>

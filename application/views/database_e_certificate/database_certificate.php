@@ -18,13 +18,19 @@
                         </div>
                         <div class="row">
                             <div class="col-sm-6">
-                                <form action="#" method="get">
+                                <form action="<?= base_url('database_e_certificate'); ?>" method="get">
 
                                     <div class="form-group row">
                                         <div class="form-group col-sm-4">
                                             <label for="">Filter Factory</label>
-                                            <select class="form-control js-example-basic-single" name="factory_filter" id="" style="width: 100%;">
-                                                <option value="0">Filter Factory</option>
+                                            <select class="form-control factoryfilter_select2" name="factory_filter" id="" style="width: 100%;">
+                                                <option value="0">--Pilih Filter Factory--</option>
+                                                <?php
+                                                foreach ($factorydata as $factorylist) {
+                                                    echo "<option value ='$factorylist->factory'>$factorylist->factory</option>";
+                                                }
+                                                ?>
+
                                             </select>
                                         </div>
                                         <div class="form-group col-sm-4">
@@ -42,11 +48,11 @@
                                         <br>
                                         <div class="form-group col-sm-4">
                                             <label for="">Tanggal Awal</label>
-                                            <input class="form-control" type="date" value="2011-08-19" id="example-date-input" name="start_filter">
+                                            <input class="form-control" type="date" value="<?= date('Y-m-d'); ?>" id="example-date-input" name="start_filter">
                                         </div>
                                         <div class="form-group col-sm-4">
                                             <label for="">Tanggal Akhir</label>
-                                            <input class="form-control" type="date" value="2011-08-19" id="example-date-input" name="end_filter">
+                                            <input class="form-control" type="date" value="<?= date('Y-m-d'); ?>" id="example-date-input" name="end_filter">
                                         </div>
                                         <div class="col-sm-2">
                                             <div class="mt-4 pt-1">
@@ -85,7 +91,7 @@
                                         </span>
                                     </button>
                                     <div class="dropdown-menu dropdown-menu-right">
-                                        <a class="dropdown-item" target="_BLANK" href="#">PDF</a>
+                                        <a class="buttons-pdf buttons-html5 dropdown-item" arial-controls="datatable-buttons" href="#">PDF</a>
                                         <a class="dropdown-item" href="#">Excel</a>
                                     </div>
                                 </div>
@@ -132,18 +138,27 @@
                                 <tbody>
                                     <?php
                                     $no = 1;
-                                    if ($cekdata == null) {
-                                        echo "<tr><td colspan='13' style ='text-align:center' >Data Belum Tersedia</td></tr>";
-                                    } else {
+                                    if (is_array($cekdata) || is_object($cekdata)) {
+                                        // echo json_encode($cekdata);
                                         foreach ($cekdata as $datacertificate) {
                                             $tanggal_sekarang = new DateTime(date('Y-m-d'));
                                             $tanggal_expired = new DateTime($datacertificate->tanggal_expired);
+                                            // var_dump($datacertificate);
                                             $interval = $tanggal_sekarang->diff($tanggal_expired);
-                                            $reminder = $interval->format('%a Hari');
+                                            // echo json_encode($interval->invert) . "|";
+                                            // echo json_encode($interval->days);
+
+                                            if ($interval->invert == 0 && $interval->days >= 0) {
+                                                $status_certificate = "<span class='badge badge-success'>Valid</span>";
+                                                $reminder = $interval->format('%a Hari');
+                                            } else {
+                                                $status_certificate = "<span class='badge badge-danger'>Expired</span>";
+                                                $reminder = $interval->format('Expired %a Hari');
+                                            }
                                             //calling who is linemanager
                                             $this->db->select('*');
-                                            $this->db->from('karyawan');
-                                            $this->db->where(array('nip' => $datacertificate->linemanager));
+                                            $this->db->from('karyawan_revisi');
+                                            $this->db->where(array('employee_id' => $datacertificate->linemanager));
                                             $querylm = $this->db->get();
                                             if ($querylm->num_rows() == 0) {
                                                 $q_lm = FALSE;
@@ -153,35 +168,42 @@
 
                                             // Calling who is PIC
                                             $this->db->select('*');
-                                            $this->db->from('karyawan');
-                                            $this->db->where(array('nip' => $datacertificate->pic));
+                                            $this->db->from('karyawan_revisi');
+                                            $this->db->where(array('employee_id' => $datacertificate->pic));
                                             $querypic = $this->db->get();
                                             if ($querypic->num_rows() == 0) {
                                                 $q_pic = FALSE;
                                             } else {
                                                 $q_pic = $querypic->row();
+                                                if ($q_pic !== null) {
+                                                    $piclmreminder_id = $q_pic->linemanager;
+                                                    $piclmreminder_name =  $q_pic->employee_name;
+                                                    $piclmreminder_lm =  $q_pic->linemanager_name;
+                                                } else {
+                                                    $piclmreminder_id = "Tidak terdaftar di data karyawan";
+                                                    $piclmreminder_name =  "Tidak terdaftar di data karyawan";
+                                                    $piclmreminder_lm =  "Tidak terdaftar di data karyawan";
+                                                }
                                             }
 
                                             echo "
     <tr>
                                         <td>" . $no++ . "</td>
                                         <td>$datacertificate->kode</td>
-                                        <td>$datacertificate->nip</td>
-                                        <td>$datacertificate->nama</td>
-                                        <td>$datacertificate->linemanager - ($q_lm->nama)</td>
-                                        <td></td>
+                                        <td>$datacertificate->employee_id</td>
+                                        <td>$datacertificate->employee_name</td>
+                                        <td>$datacertificate->linemanager - ($q_lm->employee_name)</td>
+                                        <td>$datacertificate->factory</td>
                                         <td>$datacertificate->no_certificate</td>
-                                        <td>$datacertificate->no_lisensi</td>
-                                        <td>$datacertificate->nama_certificate</td>                                                                                                                                                
+                                        <td>$datacertificate->no_sio</td>
+                                        <td>$datacertificate->jenis_lisensi</td>                                                                                                                                                
                                         <td>$datacertificate->provider</td>
                                         <td>$datacertificate->tanggal_terbit</td>
                                         <td>$datacertificate->tanggal_expired</td>                                
                                         <td>$reminder</td>
-                                        <td>$datacertificate->pic - ($q_pic->nama)</td>
-                                        <td></td>
-                                        <td class='text-center'> <button type='button' class='btn btn-success btn-sm waves-effect waves-light'>Valid</button>
-                                        <button type='button' class='btn btn-warning btn-sm waves-effect waves-light'>Process</button>
-                                        <button type='button' class='btn btn-danger btn-sm waves-effect waves-light'>Expired</button>
+                                        <td>$datacertificate->pic - ($piclmreminder_name)</td>
+                                        <td>$piclmreminder_id - ($piclmreminder_lm)</td>
+                                        <td class='text-center'> $status_certificate
                                         </td>
                                         <td>$datacertificate->note</td>
                                       <!--  <td>$datacertificate->files</td>-->
@@ -203,7 +225,7 @@
                                             </td>
                                             <td>
                                                 <span style='width:113px'>
-                                                    <a href='#' class='btn btn-danger m-btn m-btn--icon btn-lg m-btn--icon-only' onclick="deleteData('<?= $datacertificate->kode; ?>','<?= $datacertificate->nama_certificate; ?>')">
+                                                    <a href='#' class='btn btn-danger m-btn m-btn--icon btn-lg m-btn--icon-only' onclick="deleteData('<?= $datacertificate->kode; ?>','<?= $datacertificate->jenis_lisensi; ?>')">
                                                         <i class='far fa-trash-alt'></i>
                                                     </a>
                                                 </span>
@@ -226,7 +248,9 @@
 </div>
 
 <div class="col-sm-6 col-md-3 m-t-30">
-    <div id="modalFile" class="modal fade bs-example-modal-sm-file-<?= $datacertificate->kode; ?>" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div id="modalFile" class="modal fade bs-example-modal-sm-file-<?php if (isset($datacertificate->kode)) {
+                                                                        $datacertificate->kode;
+                                                                    } ?>" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-sm">
             <div class="modal-content">
                 <div class="modal-header">
@@ -255,7 +279,9 @@
 </div>
 
 <!---modal confirm tampil file-->
-<div class="modal fade bs-example-modal-tampil_file-<?= $datacertificate->kode; ?>" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+<div class="modal fade bs-example-modal-tampil_file-<?php if (isset($datacertificate->kode)) {
+                                                        $datacertificate->kode;
+                                                    } ?>" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-body">
@@ -347,20 +373,6 @@
 
                                             <div class="form-group col-md-12">
                                                 <div class="col-sm-12">
-                                                    <label for="">Certificate Factory</label>
-                                                    <select class="form-control factory_select2" name="factory" id="" style="width: 100%;">
-                                                        <option value="0">-- Choice Certificate Factory --</option>
-                                                        <?php
-                                                        foreach ($factorydata as $factorylist) {
-                                                            echo "<option value ='$factorylist->factory'>$factorylist->factory</option>";
-                                                        }
-                                                        ?>
-                                                    </select>
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group col-md-12">
-                                                <div class="col-sm-12">
                                                     <label for="">Certificate No.</label>
                                                     <input class="form-control" type="text" name="no_certificate" value="" id="" placeholder="Input No Certificate" autofocus>
                                                 </div>
@@ -369,17 +381,16 @@
                                             <div class="form-group col-md-12">
                                                 <div class="col-sm-12">
                                                     <label for="">SIO No.</label>
-                                                    <input class="form-control" type="text" name="no_lisensi" value="" id="" placeholder="Input No Lisensi" autofocus>
+                                                    <input class="form-control" type="text" name="no_sio" value="" id="" placeholder="Input No Lisensi" autofocus>
                                                 </div>
                                             </div>
 
                                             <div class="form-group col-md-12">
                                                 <div class="col-sm-12">
-                                                    <label for="">Certificate Name</label>
-                                                    <input class="form-control" type="text" name="nama_certificate" value="" id="" placeholder="Input Nama Certificate">
+                                                    <label for="">Jenis Lisensi</label>
+                                                    <input class="form-control" type="text" name="jenis_lisensi" value="" id="" placeholder="Input Nama Certificate">
                                                 </div>
                                             </div>
-
                                             <div class="form-group col-md-12">
                                                 <div class="col-sm-12">
                                                     <label for="">Provider</label>
@@ -411,16 +422,12 @@
                                         <div class="form-group col-md-12">
                                             <div class="col-sm-12">
                                                 <label for="">Nama Karyawan</label>
-                                                <!-- <div class="input-group mb-3">
-                                                    <input class="form-control" type="text" name="nm_karyawan" value="" id="nm_karyawan" placeholder="Input Nama Karyawan" readonly>
-                                                    <span class="input-group-text btn-success" data-toggle='modal' data-target='.bs-example-modal-nama_karyawan'><i class="fa fa-plus"></i></span>
-                                                </div> -->
-                                                <select class="form-control js-example-basic-single" name="nm_karyawan" style="width: 100%;">
+                                                <select class="form-control js-example-basic-single" name="employee_id" style="width: 100%;">
                                                     <option value="0">-- Pilih Nama Karyawan --</option>
                                                     <?php
                                                     foreach ($userdata as $user) {
                                                         echo "
-                                                        <option value='$user->nip'>$user->nama ($user->department)</option>
+                                                        <option value='$user->employee_id'>$user->employee_name ($user->department)</option>
                                            ";
                                                     }
                                                     ?>
@@ -444,16 +451,12 @@
                                         <div class="form-group col-md-12">
                                             <div class="col-sm-12">
                                                 <label for="">PIC Reminder</label>
-                                                <!-- <div class="input-group mb-3">
-                                                    <input class="form-control" type="text" name="pic" value="" id="" placeholder="Input PIC" readonly>
-                                                    <span class="input-group-text btn-success" data-toggle='modal' data-target='.bs-example-modal-pic'><i class="fa fa-plus"></i></span>
-                                                </div> -->
                                                 <select class="form-control js-example-basic-single" name="pic" style="width: 100%;">
-                                                    <option value="0">-- Pilih PIC Reminder --</option>
+                                                    <option value="0">-- Pilih PIC REMINDER--</option>
                                                     <?php
-                                                    foreach ($userdata as $user) {
+                                                    foreach ($linemanagerdata as $lmdata) {
                                                         echo "
-                                                        <option value='$user->nip'>$user->nama ($user->department)</option>
+                                                        <option value='$lmdata->employee_id'>$lmdata->employee_name ($lmdata->department)</option>
                                            ";
                                                     }
                                                     ?>
@@ -465,7 +468,7 @@
                                         <div class="form-group col-md-12">
                                             <div class="col-sm-12">
                                                 <label for="">Note</label>
-                                                <textarea class="form-control" id="" name="note" cols="30" rows="5"></textarea>
+                                                <textarea class="form-control" id="" name="note" cols="30" rows="5" required></textarea>
                                             </div>
                                         </div>
                                     </div>

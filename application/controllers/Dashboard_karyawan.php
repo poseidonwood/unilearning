@@ -15,15 +15,7 @@ class Dashboard_karyawan extends CI_Controller
         } else {
             $role = $this->session->userdata('role');
             if ($role !== 'KARYAWAN') {
-                $session_data = array(
-                    'user_id' => $check_login->id,
-                    'role' => $check_login->role,
-                    'status' => $check_login->status,
-                    'logged_in' => TRUE
-                );
-
                 // $this->session->unset_userdata($session_data);
-
                 $this->session->sess_destroy();
                 $this->session->set_flashdata('error', 'AKSES DI TOLAK SILAHKAN LOGIN LAGI');
                 redirect('login');
@@ -33,25 +25,7 @@ class Dashboard_karyawan extends CI_Controller
 
     public function index()
     {
-        // $data = array(
-        //     'nama' =>  $this->session->userdata('nama'),
-        // );
-        // $role = $this->session->userdata('role');
-        // if ($role !== 'KARYAWAN') {
-        //     $session_data = array(
-        //         'user_id' => $check_login->id,
-        //         'role' => $check_login->role,
-        //         'status' => $check_login->status,
-        //         'logged_in' => TRUE
-        //     );
 
-        //     $this->session->unset_userdata($session_data);
-        //     $this->session->set_flashdata('error', 'AKSES DI TOLAK SILAHKAN LOGIN LAGI');
-        //     redirect('login');
-        // } else {
-
-        //     $this->template->load('layoutkaryawan', 'dashboard/dashboard_karyawan', $data);
-        // }
         $this->template->load('layoutkaryawan', 'dashboard/dashboard_karyawan');
     }
 }
